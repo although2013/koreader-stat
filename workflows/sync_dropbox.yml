@@ -1,0 +1,48 @@
+name: 🔄 自动获取 Dropbox 数据库并更新 CSV
+
+on:
+  schedule:
+    # UTC 时间每日凌晨 0:00 (相当于北京时间早上 8:00) 自动触发
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 允许在 GitHub 页面手动点击按钮随时运行
+
+jobs:
+  sync_and_convert:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # 给 Actions 赋予向仓库提交代码的权限
+
+    steps:
+      - name: 1. 检出代码
+        uses: actions/checkout@v4
+
+      - name: 2. 设置 Python 环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: 3. 安装依赖库
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+
+      - name: 4. 从 Dropbox 下载最新 sqlite 文件
+        run: |
+          # 如果使用了 Github Secrets 变量:
+          curl -L -o statistics.sqlite3 "${{ secrets.DROPBOX_FILE_URL }}"
+          
+          # 如果直接硬编码直链，可以用这行取代上面这行：
+          # curl -L -o statistics.sqlite3 "https://www.dropbox.com/s/xxxx/statistics.sqlite3?dl=1"
+
+      - name: 5. 运行 Python 脚本转换为 CSV
+        run: |
+          python export_csv.py
+
+      - name: 6. 自动提交并 Push 更新到仓库
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 自动同步: 更新 CSV 数据与 README 统计卡片"
+          branch: ${{ github.ref_name }}
+          # 加上 README.md，允许提交 README 的更改
+          file_pattern: 'data_csv/*.csv README.md'
