@@ -1,4 +1,4 @@
-name: 🔄 自动获取 Dropbox 数据库并更新 CSV
+name: 🔄 自动获取 Dropbox 数据库并更新 README
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch: # 允许在 GitHub 页面手动点击按钮随时运行
 
 jobs:
-  sync_and_convert:
+  sync_and_update:
     runs-on: ubuntu-latest
 
     permissions:
@@ -25,24 +25,19 @@ jobs:
       - name: 3. 安装依赖库
         run: |
           python -m pip install --upgrade pip
-          pip install pandas
+          pip install pandas numpy
 
       - name: 4. 从 Dropbox 下载最新 sqlite 文件
         run: |
-          # 如果使用了 Github Secrets 变量:
           curl -L -o statistics.sqlite3 "${{ secrets.DROPBOX_FILE_URL }}"
-          
-          # 如果直接硬编码直链，可以用这行取代上面这行：
-          # curl -L -o statistics.sqlite3 "https://www.dropbox.com/s/xxxx/statistics.sqlite3?dl=1"
 
-      - name: 5. 运行 Python 脚本转换为 CSV
+      - name: 5. 运行 Python 脚本更新 README
         run: |
-          python export_csv.py
+          python update_readme.py
 
-      - name: 6. 自动提交并 Push 更新到仓库
+      - name: 6. 自动提交并 Push README 到仓库
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "🤖 自动同步: 更新 CSV 数据与 README 统计卡片"
+          commit_message: "🤖 自动同步: 更新 KOReader 阅读统计看板"
           branch: ${{ github.ref_name }}
-          # 加上 README.md，允许提交 README 的更改
-          file_pattern: 'data_csv/*.csv README.md'
+          file_pattern: 'README.md'

@@ -6,7 +6,6 @@ import pandas as pd
 import numpy as np
 
 DB_PATH = 'statistics.sqlite3'
-OUTPUT_DIR = 'data_csv'
 README_PATH = 'README.md'
 
 def calculate_streaks(dates):
@@ -172,27 +171,7 @@ def main():
         print(f"❌ 错误: 未找到数据库文件 {DB_PATH}")
         return
 
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-
-    # 1. 导出表为 CSV
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    tables = [row[0] for row in cursor.fetchall()]
-    for table in tables:
-        df = pd.read_sql_query(f"SELECT * FROM `{table}`", conn)
-        df.to_csv(os.path.join(OUTPUT_DIR, f"{table}.csv"), index=False, encoding='utf-8-sig')
-
-    # 2. 导出视图为 CSV
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='view';")
-    views = [row[0] for row in cursor.fetchall()]
-    for view in views:
-        df = pd.read_sql_query(f"SELECT * FROM `{view}`", conn)
-        df.to_csv(os.path.join(OUTPUT_DIR, f"{view}_view.csv"), index=False, encoding='utf-8-sig')
-
-    print("✅ 所有 CSV 文件导出完成！")
-
-    # 3. 自动更新 README 页面
     update_readme(conn)
     conn.close()
 
