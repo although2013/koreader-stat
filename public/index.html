@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOReader 读书记录看板</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+    const { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } = window.Recharts;
+
+    function App() {
+      const [data, setData] = useState(null);
+
+      useEffect(() => {
+        // 读取 Python 生成的 JSON 数据
+        fetch('/reading_data.json')
+          .then(res => res.json())
+          .then(jsonData => setData(jsonData))
+          .catch(err => console.log('数据加载中或失败'));
+      }, []);
+
+      if (!data) return <div className="p-8 text-center text-slate-400">正在加载阅读数据...</div>;
+
+      return (
+        <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
+          {/* 页头 */}
+          <header className="flex flex-col md:flex-row justify-between items-start md:items-center bg-slate-900/80 p-6 rounded-2xl border border-slate-800">
+            <div>
+              <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200">
+                📖 KOReader 阅读深度看板
+              </h1>
+              <p className="text-xs text-slate-400 mt-2">
+                周期：{data.period.start} ~ {data.period.end} ({data.period.totalDays} 天) | 更新于：{data.period.updatedAt}
+              </p>
+            </div>
+            <div className="mt-4 md:mt-0 bg-emerald-950/40 border border-emerald-500/20 px-4 py-2 rounded-xl text-emerald-400 text-sm">
+              <span className="text-xs text-slate-400 block">最近阅读</span>
+              <span className="font-semibold">《{data.recent.title}》</span>
+            </div>
+          </header>
+
+          {/* 指标卡片 */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <MetricCard title="总阅读时长" value={`${data.overall.totalHours}h`} sub={`${data.overall.totalHours * 60} 分钟`} icon="⏱️" />
+            <MetricCard title="总翻页数" value={data.overall.totalPages.toLocaleString()} sub={`${data.overall.avgSpeedPph} 页/小时`} icon="📄" />
+            <MetricCard title="打卡 Streak" value={`${data.overall.currentStreak} 天`} sub={`最高: ${data.overall.maxStreak} 天`} icon="🔥" />
+            <MetricCard title="夜猫子指数" value={`${data.overall.nightOwlRatio}%`} sub="00:00 - 06:00 时段" icon="🌙" />
+          </div>
+
+          {/* 图表展示 */}
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="md:col-span-2 bg-slate-900/80 p-6 rounded-2xl border border-slate-800">
+              <h2 className="text-base font-semibold mb-4">🌙 24 小时阅读时段分布</h2>
+              <div className="h-64 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={data.timeDistribution}>
+                    <XAxis dataKey="hour" stroke="#64748b" />
+                    <YAxis stroke="#64748b" />
+                    <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155' }} />
+                    <Area type="monotone" dataKey="hours" stroke="#10b981" fill="#10b981" fillOpacity={0.2} />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="bg-slate-900/80 p-6 rounded-2xl border border-slate-800">
+              <h2 className="text-base font-semibold mb-4">📊 阅读时长占比</h2>
+              <div className="h-48 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie data={data.books} dataKey="hours" nameKey="title" cx="50%" cy="50%" innerRadius={40} outerRadius={65}>
+                      {data.books.map((entry, index) => (
+                        <Cell key={index} fill={['#10b981', '#06b6d4', '#6366f1', '#ec4899'][index % 4]} />
+                      ))}
+                    </Pie>
+                    <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155' }} />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function MetricCard({ title, value, sub, icon }) {
+      return (
+        <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+          <div className="flex justify-between text-xs text-slate-400"><span>{title}</span><span>{icon}</span></div>
+          <div className="text-xl font-bold mt-2 text-slate-100">{value}</div>
+          <div className="text-[11px] text-slate-400 mt-1">{sub}</div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
