@@ -37,6 +37,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: 'koreader-dashboard'  # 替换为你在 Cloudflare 创建的项目名称
+          projectName: 'koreader-stat'  # 替换为你在 Cloudflare 创建的项目名称
           directory: 'public'                 # 部署 public 文件夹
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
