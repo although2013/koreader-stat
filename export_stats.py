@@ -1,7 +1,7 @@
 import os
 import json
 import sqlite3
-import datetime
+from datetime import datetime, timedelta, timezone
 import pandas as pd
 import numpy as np
 
@@ -29,8 +29,33 @@ def calculate_streaks(dates):
             break
     return curr_streak, max_streak
 
+def get_daily_heatmap(cursor):
+    """提取过去 365 天每天的阅读时长（分钟），使用 KOReader 的 page_stat_data 表"""
+    one_year_ago = (datetime.now() - timedelta(days=365)).strftime('%Y-%m-%d')
+    
+    # 适配 KOReader 的真实数据表 page_stat_data
+    query = """
+        SELECT 
+            date(start_time, 'unixepoch', 'localtime') as read_date,
+            SUM(duration) / 60.0 as minutes
+        FROM page_stat_data
+        WHERE date(start_time, 'unixepoch', 'localtime') >= ?
+        GROUP BY read_date
+        ORDER BY read_date ASC
+    """
+    
+    cursor.execute(query, (one_year_ago,))
+    rows = cursor.fetchall()
+    
+    # 转为字典 {"2026-01-01": 45.5, ...}
+    heatmap_data = {row[0]: round(row[1], 1) for row in rows if row[0]}
+    return heatmap_data
+
 def generate_web_json(conn):
     """从 SQLite 提取并清洗数据，生成 Cloudflare Pages 所需的结构化 JSON"""
+    # 🌟 1. 修复：建立游标对象，供 get_daily_heatmap 使用
+    cursor = conn.cursor()
+
     page_stats = pd.read_sql_query("SELECT id_book, page, start_time, duration FROM page_stat_data ORDER BY start_time", conn)
     books_df = pd.read_sql_query("SELECT id, title, authors, highlights, pages, total_read_time, total_read_pages FROM book WHERE total_read_time > 0", conn)
 
@@ -74,14 +99,14 @@ def generate_web_json(conn):
     night_sec = page_stats[page_stats['hour'].isin([0, 1, 2, 3, 4, 5])]['duration'].sum()
     night_ratio = round((night_sec / total_sec) * 100, 1) if total_sec > 0 else 0
 
-    # 5.1 生成 24 小时阅读时长分布数据（供 Recharts 面积图渲染）
+    # 5.1 生成 24 小时阅读时长分布数据
     hourly_duration = page_stats.groupby('hour')['duration'].sum() / 3600.0
     time_distribution = [
         {"hour": f"{h:02d}:00", "hours": round(hourly_duration.get(h, 0.0), 2)}
         for h in range(24)
     ]
 
-    # 6. 图书进度 & ETA 预测
+    # 6. 图书进度 & ETA 预测 & 划线密度诊断
     book_stats = page_stats.groupby('id_book').agg(
         duration=('duration', 'sum'),
         logged_pages=('page', 'count'),
@@ -102,26 +127,83 @@ def generate_web_json(conn):
         time_str = f"{r['duration'] / 3600.0:.1f}h" if r['duration'] >= 3600 else f"{int(r['duration'] // 60)}m"
         eta_str = "已完成" if r['progress_pct'] >= 100 else f"{r['eta_hours']}h"
         
+        # 🌟 计算划线密度与诊断模式
+        hrs = r['duration'] / 3600.0
+        highlight_density = round(r['highlights'] / hrs, 1) if hrs > 0 else 0.0
+        if highlight_density >= 5.0:
+            reading_mode = "💡 干货研读"
+        elif highlight_density >= 1.5:
+            reading_mode = "📝 随手记"
+        else:
+            reading_mode = "🌊 纯沉浸"
+
         books_list.append({
             "rank": idx + 1,
             "medal": medals[idx] if idx < 5 else f"{idx+1}",
             "title": clean_title,
             "duration": time_str,
-            "hours": round(r['duration'] / 3600.0, 2),
+            "hours": round(hrs, 2),
             "progress": round(r['progress_pct'], 1),
             "eta": eta_str,
             "highlights": int(r['highlights']),
+            "highlightDensity": highlight_density,  # 划线密度
+            "readingMode": reading_mode,            # 阅读模式 Tag
             "status": "finished" if r['progress_pct'] >= 100 else "reading"
         })
+    
+    # 🌟 新增：提取最近 7 天阅读数据
+    seven_days_ago = (datetime.now() - timedelta(days=6)).date() # 包含今天在内共 7 天
+    recent_7days_df = page_stats[page_stats['date'] >= seven_days_ago]
+
+    # 1. 每日阅读时长 (分钟) 柱状图数据
+    daily_7days = (
+        recent_7days_df.groupby('date')['duration'].sum() / 60.0
+    ).reindex(
+        [seven_days_ago + timedelta(days=i) for i in range(7)], 
+        fill_value=0
+    )
+    
+    recent_7days_chart = [
+        {
+            "day": d.strftime("%m-%d"),
+            "minutes": round(mins, 1)
+        }
+        for d, mins in daily_7days.items()
+    ]
+
+    # 2. 7 天基础汇总
+    total_7days_sec = recent_7days_df['duration'].sum()
+    total_7days_hrs = round(total_7days_sec / 3600.0, 1)
+    avg_7days_daily_min = round((total_7days_sec / 60.0) / 7.0, 1)
+
+    # 3. 7 天主攻图书 Top 3
+    recent_7days_books = (
+        recent_7days_df.groupby('id_book')['duration'].sum()
+        .reset_index()
+        .sort_values(by='duration', ascending=False)
+        .head(3)
+    )
+    
+    top_7days_books = []
+    for _, row in recent_7days_books.iterrows():
+        book_match = books_df[books_df['id'] == row['id_book']]
+        if not book_match.empty:
+            title = book_match.iloc[0]['title'].split('（')[0].split('(')[0].strip()
+            top_7days_books.append({
+                "title": title,
+                "hours": round(row['duration'] / 3600.0, 1)
+            })
+
+    
 
     # 7. 最近动态
     last_record = page_stats.sort_values(by='start_time', ascending=False).iloc[0]
     last_book_row = books_df[books_df['id'] == last_record['id_book']].iloc[0]
     last_book_title = last_book_row['title'].split('（')[0].split('(')[0].strip()
-    last_time = (datetime.datetime.fromtimestamp(last_record['start_time'], datetime.timezone.utc) + datetime.timedelta(hours=8)).strftime("%Y-%m-%d %H:%M")
-    update_date_str = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=8)).strftime("%Y-%m-%d")
+    last_time = (datetime.fromtimestamp(last_record['start_time'], timezone.utc) + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M")
+    update_date_str = (datetime.now(timezone.utc) + timedelta(hours=8)).strftime("%Y-%m-%d")
 
-    # 组装最终网页使用的 JSON 对象
+    # 8. 组装 JSON 对象
     web_data = {
         "period": {
             "start": start_date_str,
@@ -144,7 +226,7 @@ def generate_web_json(conn):
             "nightOwlRatio": night_ratio,
             "totalHighlights": total_highlights
         },
-        "heatmap": get_daily_heatmap(cursor),
+        "heatmap": get_daily_heatmap(cursor), # 传入正确的 cursor
         "recent": {
             "title": last_book_title,
             "time": last_time
@@ -153,36 +235,20 @@ def generate_web_json(conn):
         "books": books_list
     }
 
+    # 将 7 天数据写入 web_data 字典
+    web_data["last7Days"] = {
+        "totalHours": total_7days_hrs,
+        "avgDailyMin": avg_7days_daily_min,
+        "chart": recent_7days_chart,
+        "topBooks": top_7days_books
+    }
+
     # 保存文件
     os.makedirs(os.path.dirname(JSON_OUTPUT_PATH), exist_ok=True)
     with open(JSON_OUTPUT_PATH, 'w', encoding='utf-8') as f:
         json.dump(web_data, f, ensure_ascii=False, indent=2)
         
     print(f"✅ 成功生成网页数据文件: {JSON_OUTPUT_PATH}")
-
-def get_daily_heatmap(cursor):
-    """提取过去 365 天每天的阅读时长（分钟）"""
-    # 计算一年前的日期
-    one_year_ago = (datetime.now() - timedelta(days=365)).strftime('%Y-%m-%d')
-    
-    # 假设你的阅读记录表/日志表中有 timestamp 或 date 字段
-    # 这里以 KOReader 的 page_stat / book_stat 按天 group by 为例：
-    query = """
-        SELECT 
-            date(start_time, 'unixepoch', 'localtime') as read_date,
-            SUM(duration) / 60 as minutes
-        FROM user_book
-        WHERE read_date >= ?
-        GROUP BY read_date
-        ORDER BY read_date ASC
-    """
-    
-    cursor.execute(query, (one_year_ago,))
-    rows = cursor.fetchall()
-    
-    # 转为字典 {"2026-01-01": 45, ...}
-    heatmap_data = {row[0]: round(row[1], 1) for row in rows if row[0]}
-    return heatmap_data
 
 def main():
     if not os.path.exists(DB_PATH):

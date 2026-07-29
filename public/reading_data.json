@@ -20,6 +20,23 @@
     "nightOwlRatio": 41.3,
     "totalHighlights": 43
   },
+  "heatmap": {
+    "2026-07-13": 119.4,
+    "2026-07-14": 117.4,
+    "2026-07-15": 53.1,
+    "2026-07-17": 62.2,
+    "2026-07-18": 191.3,
+    "2026-07-19": 9.7,
+    "2026-07-20": 2.4,
+    "2026-07-22": 6.2,
+    "2026-07-23": 124.0,
+    "2026-07-24": 14.4,
+    "2026-07-25": 198.4,
+    "2026-07-26": 60.6,
+    "2026-07-27": 66.2,
+    "2026-07-28": 68.5,
+    "2026-07-29": 82.7
+  },
   "recent": {
     "title": "巴菲特传",
     "time": "2026-07-29 20:44"
@@ -132,6 +149,8 @@
       "progress": 51.0,
       "eta": "21.8h",
       "highlights": 15,
+      "highlightDensity": 2.2,
+      "readingMode": "📝 随手记",
       "status": "reading"
     },
     {
@@ -143,6 +162,8 @@
       "progress": 21.5,
       "eta": "10.0h",
       "highlights": 3,
+      "highlightDensity": 0.8,
+      "readingMode": "🌊 纯沉浸",
       "status": "reading"
     },
     {
@@ -154,6 +175,8 @@
       "progress": 100.0,
       "eta": "已完成",
       "highlights": 13,
+      "highlightDensity": 3.7,
+      "readingMode": "📝 随手记",
       "status": "finished"
     },
     {
@@ -165,6 +188,8 @@
       "progress": 8.6,
       "eta": "14.2h",
       "highlights": 1,
+      "highlightDensity": 0.7,
+      "readingMode": "🌊 纯沉浸",
       "status": "reading"
     },
     {
@@ -176,6 +201,8 @@
       "progress": 24.1,
       "eta": "2.0h",
       "highlights": 0,
+      "highlightDensity": 0.0,
+      "readingMode": "🌊 纯沉浸",
       "status": "reading"
     },
     {
@@ -187,6 +214,8 @@
       "progress": 2.5,
       "eta": "26.2h",
       "highlights": 0,
+      "highlightDensity": 0.0,
+      "readingMode": "🌊 纯沉浸",
       "status": "reading"
     },
     {
@@ -198,6 +227,8 @@
       "progress": 100.0,
       "eta": "已完成",
       "highlights": 1,
+      "highlightDensity": 1.8,
+      "readingMode": "📝 随手记",
       "status": "finished"
     },
     {
@@ -209,6 +240,8 @@
       "progress": 54.8,
       "eta": "15.1h",
       "highlights": 0,
+      "highlightDensity": 0.0,
+      "readingMode": "🌊 纯沉浸",
       "status": "reading"
     },
     {
@@ -220,6 +253,8 @@
       "progress": 14.1,
       "eta": "2.9h",
       "highlights": 10,
+      "highlightDensity": 20.7,
+      "readingMode": "💡 干货研读",
       "status": "reading"
     },
     {
@@ -231,7 +266,57 @@
       "progress": 6.7,
       "eta": "3.3h",
       "highlights": 0,
+      "highlightDensity": 0.0,
+      "readingMode": "🌊 纯沉浸",
       "status": "reading"
     }
-  ]
+  ],
+  "last7Days": {
+    "totalHours": 9.8,
+    "avgDailyMin": 84.0,
+    "chart": [
+      {
+        "day": "07-23",
+        "minutes": 97.5
+      },
+      {
+        "day": "07-24",
+        "minutes": 24.5
+      },
+      {
+        "day": "07-25",
+        "minutes": 188.3
+      },
+      {
+        "day": "07-26",
+        "minutes": 79.8
+      },
+      {
+        "day": "07-27",
+        "minutes": 79.7
+      },
+      {
+        "day": "07-28",
+        "minutes": 54.8
+      },
+      {
+        "day": "07-29",
+        "minutes": 63.7
+      }
+    ],
+    "topBooks": [
+      {
+        "title": "滚雪球：巴菲特和他的财富人生",
+        "hours": 6.2
+      },
+      {
+        "title": "巴菲特传",
+        "hours": 3.6
+      },
+      {
+        "title": "Summary of logs/ccdb on KPPMainAppV2_5409_002-juno_16020101_muscat_wario-409747_crash_Jul_29_00.23.57_2026.html",
+        "hours": 0.0
+      }
+    ]
+  }
 }
