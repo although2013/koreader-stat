@@ -144,6 +144,7 @@ def generate_web_json(conn):
             "nightOwlRatio": night_ratio,
             "totalHighlights": total_highlights
         },
+        "heatmap": get_daily_heatmap(cursor),
         "recent": {
             "title": last_book_title,
             "time": last_time
@@ -158,6 +159,30 @@ def generate_web_json(conn):
         json.dump(web_data, f, ensure_ascii=False, indent=2)
         
     print(f"✅ 成功生成网页数据文件: {JSON_OUTPUT_PATH}")
+
+def get_daily_heatmap(cursor):
+    """提取过去 365 天每天的阅读时长（分钟）"""
+    # 计算一年前的日期
+    one_year_ago = (datetime.now() - timedelta(days=365)).strftime('%Y-%m-%d')
+    
+    # 假设你的阅读记录表/日志表中有 timestamp 或 date 字段
+    # 这里以 KOReader 的 page_stat / book_stat 按天 group by 为例：
+    query = """
+        SELECT 
+            date(start_time, 'unixepoch', 'localtime') as read_date,
+            SUM(duration) / 60 as minutes
+        FROM user_book
+        WHERE read_date >= ?
+        GROUP BY read_date
+        ORDER BY read_date ASC
+    """
+    
+    cursor.execute(query, (one_year_ago,))
+    rows = cursor.fetchall()
+    
+    # 转为字典 {"2026-01-01": 45, ...}
+    heatmap_data = {row[0]: round(row[1], 1) for row in rows if row[0]}
+    return heatmap_data
 
 def main():
     if not os.path.exists(DB_PATH):
