@@ -3,22 +3,22 @@
     "start": "2026-07-12",
     "end": "2026-07-29",
     "totalDays": 18,
-    "updatedAt": "2026-07-29"
+    "updatedAt": "2026-07-30"
   },
   "overall": {
-    "totalHours": 19.6,
-    "totalMinutes": 1176,
-    "totalPages": 1248,
-    "totalSessions": 75,
+    "totalHours": 20.2,
+    "totalMinutes": 1210,
+    "totalPages": 1288,
+    "totalSessions": 76,
     "maxSessionMin": 165.4,
-    "avgSessionMin": 15.7,
-    "activeBooks": 29,
-    "avgSpeedPph": 63.7,
-    "avgSecPerPage": 56.6,
+    "avgSessionMin": 15.9,
+    "activeBooks": 30,
+    "avgSpeedPph": 63.9,
+    "avgSecPerPage": 56.4,
     "currentStreak": 8,
     "maxStreak": 8,
-    "nightOwlRatio": 41.3,
-    "totalHighlights": 43
+    "nightOwlRatio": 40.2,
+    "totalHighlights": 46
   },
   "heatmap": {
     "2026-07-12": 28.0,
@@ -36,11 +36,11 @@
     "2026-07-26": 79.8,
     "2026-07-27": 79.7,
     "2026-07-28": 54.8,
-    "2026-07-29": 63.7
+    "2026-07-29": 97.5
   },
   "recent": {
     "title": "巴菲特传",
-    "time": "2026-07-29 20:44"
+    "time": "2026-07-29 23:55"
   },
   "timeDistribution": [
     {
@@ -105,7 +105,7 @@
     },
     {
       "hour": "15:00",
-      "hours": 0.3
+      "hours": 0.86
     },
     {
       "hour": "16:00",
@@ -222,6 +222,19 @@
     {
       "rank": 7,
       "medal": "7",
+      "title": "巴菲特传",
+      "duration": "33m",
+      "hours": 0.56,
+      "progress": 21.8,
+      "eta": "8.0h",
+      "highlights": 3,
+      "highlightDensity": 5.3,
+      "readingMode": "💡 干货研读",
+      "status": "reading"
+    },
+    {
+      "rank": 8,
+      "medal": "8",
       "title": "快速阅读",
       "duration": "33m",
       "hours": 0.55,
@@ -233,8 +246,8 @@
       "status": "finished"
     },
     {
-      "rank": 8,
-      "medal": "8",
+      "rank": 9,
+      "medal": "9",
       "title": "高效决策法系列：原则+对赌+富人思维+思维的发现+助推",
       "duration": "29m",
       "hours": 0.49,
@@ -246,8 +259,8 @@
       "status": "reading"
     },
     {
-      "rank": 9,
-      "medal": "9",
+      "rank": 10,
+      "medal": "10",
       "title": "学会写作：自我进阶的高效方法",
       "duration": "28m",
       "hours": 0.48,
@@ -257,24 +270,11 @@
       "highlightDensity": 20.7,
       "readingMode": "💡 干货研读",
       "status": "reading"
-    },
-    {
-      "rank": 10,
-      "medal": "10",
-      "title": "一网打尽：贝佐斯与亚马逊时代",
-      "duration": "12m",
-      "hours": 0.21,
-      "progress": 6.7,
-      "eta": "3.3h",
-      "highlights": 0,
-      "highlightDensity": 0.0,
-      "readingMode": "🌊 纯沉浸",
-      "status": "reading"
     }
   ],
   "last7Days": {
-    "totalHours": 9.8,
-    "avgDailyMin": 84.0,
+    "totalHours": 10.4,
+    "avgDailyMin": 88.9,
     "chart": [
       {
         "day": "07-23",
@@ -302,7 +302,7 @@
       },
       {
         "day": "07-29",
-        "minutes": 63.7
+        "minutes": 97.5
       }
     ],
     "topBooks": [
@@ -315,8 +315,8 @@
         "hours": 3.6
       },
       {
-        "title": "Summary of logs/ccdb on KPPMainAppV2_5409_002-juno_16020101_muscat_wario-409747_crash_Jul_29_00.23.57_2026.html",
-        "hours": 0.0
+        "title": "巴菲特传",
+        "hours": 0.6
       }
     ]
   }
