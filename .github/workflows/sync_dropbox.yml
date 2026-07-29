@@ -1,14 +1,17 @@
-name: 🔄 自动获取 Dropbox 数据库并部署阅读看板
+name: 🔄 自动获取 Dropbox 数据库并更新阅读数据 JSON
 
 on:
   schedule:
     # UTC 时间每日凌晨 0:00 (北京时间早上 8:00) 自动触发
     - cron: '0 0 * * *'
-  workflow_dispatch: # 允许手动点击按钮随时运行
+  workflow_dispatch: # 允许在 GitHub 页面手动点击按钮随时运行
 
 jobs:
-  sync_and_deploy:
+  sync_and_update:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # 赋予 Actions 向仓库 Commit 和 Push 的权限
 
     steps:
       - name: 1. 检出代码
@@ -32,11 +35,9 @@ jobs:
         run: |
           python export_stats.py
 
-      - name: 6. 自动部署到 Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+      - name: 6. 自动提交并 Push reading_data.json 到仓库
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: 'koreader-dashboard'  # 替换为你在 Cloudflare 创建的项目名称
-          directory: 'public'                 # 部署 public 文件夹
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: "🤖 自动同步: 更新 KOReader 阅读数据 JSON"
+          branch: ${{ github.ref_name }}
+          file_pattern: 'public/reading_data.json'
