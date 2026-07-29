@@ -1,0 +1,237 @@
+{
+  "period": {
+    "start": "2026-07-12",
+    "end": "2026-07-29",
+    "totalDays": 18,
+    "updatedAt": "2026-07-29"
+  },
+  "overall": {
+    "totalHours": 19.6,
+    "totalMinutes": 1176,
+    "totalPages": 1248,
+    "totalSessions": 75,
+    "maxSessionMin": 165.4,
+    "avgSessionMin": 15.7,
+    "activeBooks": 29,
+    "avgSpeedPph": 63.7,
+    "avgSecPerPage": 56.6,
+    "currentStreak": 8,
+    "maxStreak": 8,
+    "nightOwlRatio": 41.3,
+    "totalHighlights": 43
+  },
+  "recent": {
+    "title": "巴菲特传",
+    "time": "2026-07-29 20:44"
+  },
+  "timeDistribution": [
+    {
+      "hour": "00:00",
+      "hours": 1.51
+    },
+    {
+      "hour": "01:00",
+      "hours": 1.19
+    },
+    {
+      "hour": "02:00",
+      "hours": 1.74
+    },
+    {
+      "hour": "03:00",
+      "hours": 1.21
+    },
+    {
+      "hour": "04:00",
+      "hours": 1.26
+    },
+    {
+      "hour": "05:00",
+      "hours": 1.2
+    },
+    {
+      "hour": "06:00",
+      "hours": 0.02
+    },
+    {
+      "hour": "07:00",
+      "hours": 0.0
+    },
+    {
+      "hour": "08:00",
+      "hours": 0.14
+    },
+    {
+      "hour": "09:00",
+      "hours": 0.1
+    },
+    {
+      "hour": "10:00",
+      "hours": 2.98
+    },
+    {
+      "hour": "11:00",
+      "hours": 1.06
+    },
+    {
+      "hour": "12:00",
+      "hours": 2.02
+    },
+    {
+      "hour": "13:00",
+      "hours": 1.99
+    },
+    {
+      "hour": "14:00",
+      "hours": 0.6
+    },
+    {
+      "hour": "15:00",
+      "hours": 0.3
+    },
+    {
+      "hour": "16:00",
+      "hours": 0.33
+    },
+    {
+      "hour": "17:00",
+      "hours": 0.27
+    },
+    {
+      "hour": "18:00",
+      "hours": 0.0
+    },
+    {
+      "hour": "19:00",
+      "hours": 0.0
+    },
+    {
+      "hour": "20:00",
+      "hours": 0.0
+    },
+    {
+      "hour": "21:00",
+      "hours": 0.0
+    },
+    {
+      "hour": "22:00",
+      "hours": 0.13
+    },
+    {
+      "hour": "23:00",
+      "hours": 1.6
+    }
+  ],
+  "books": [
+    {
+      "rank": 1,
+      "medal": "🥇",
+      "title": "滚雪球：巴菲特和他的财富人生",
+      "duration": "6.7h",
+      "hours": 6.74,
+      "progress": 51.0,
+      "eta": "21.8h",
+      "highlights": 15,
+      "status": "reading"
+    },
+    {
+      "rank": 2,
+      "medal": "🥈",
+      "title": "巴菲特传",
+      "duration": "3.6h",
+      "hours": 3.61,
+      "progress": 21.5,
+      "eta": "10.0h",
+      "highlights": 3,
+      "status": "reading"
+    },
+    {
+      "rank": 3,
+      "medal": "🥉",
+      "title": "2049：未来10000天的可能",
+      "duration": "3.5h",
+      "hours": 3.54,
+      "progress": 100.0,
+      "eta": "已完成",
+      "highlights": 13,
+      "status": "finished"
+    },
+    {
+      "rank": 4,
+      "medal": "4️⃣",
+      "title": "毛泽东传",
+      "duration": "1.5h",
+      "hours": 1.53,
+      "progress": 8.6,
+      "eta": "14.2h",
+      "highlights": 1,
+      "status": "reading"
+    },
+    {
+      "rank": 5,
+      "medal": "5️⃣",
+      "title": "你一年的8760小时",
+      "duration": "40m",
+      "hours": 0.68,
+      "progress": 24.1,
+      "eta": "2.0h",
+      "highlights": 0,
+      "status": "reading"
+    },
+    {
+      "rank": 6,
+      "medal": "6",
+      "title": "国富论",
+      "duration": "35m",
+      "hours": 0.6,
+      "progress": 2.5,
+      "eta": "26.2h",
+      "highlights": 0,
+      "status": "reading"
+    },
+    {
+      "rank": 7,
+      "medal": "7",
+      "title": "快速阅读",
+      "duration": "33m",
+      "hours": 0.55,
+      "progress": 100.0,
+      "eta": "已完成",
+      "highlights": 1,
+      "status": "finished"
+    },
+    {
+      "rank": 8,
+      "medal": "8",
+      "title": "高效决策法系列：原则+对赌+富人思维+思维的发现+助推",
+      "duration": "29m",
+      "hours": 0.49,
+      "progress": 54.8,
+      "eta": "15.1h",
+      "highlights": 0,
+      "status": "reading"
+    },
+    {
+      "rank": 9,
+      "medal": "9",
+      "title": "学会写作：自我进阶的高效方法",
+      "duration": "28m",
+      "hours": 0.48,
+      "progress": 14.1,
+      "eta": "2.9h",
+      "highlights": 10,
+      "status": "reading"
+    },
+    {
+      "rank": 10,
+      "medal": "10",
+      "title": "一网打尽：贝佐斯与亚马逊时代",
+      "duration": "12m",
+      "hours": 0.21,
+      "progress": 6.7,
+      "eta": "3.3h",
+      "highlights": 0,
+      "status": "reading"
+    }
+  ]
+}
