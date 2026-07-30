@@ -1,85 +1,85 @@
 {
   "period": {
     "start": "2026-07-13",
-    "end": "2026-07-29",
-    "totalDays": 17,
+    "end": "2026-07-30",
+    "totalDays": 18,
     "updatedAt": "2026-07-30",
     "timezone": "UTC+9",
     "tzOffsetHours": 9
   },
   "overall": {
-    "totalHours": 19.6,
-    "totalMinutes": 1176,
-    "totalPages": 1248,
-    "totalSessions": 75,
+    "totalHours": 20.9,
+    "totalMinutes": 1252,
+    "totalPages": 1328,
+    "totalSessions": 78,
     "maxSessionMin": 165.3,
-    "avgSessionMin": 15.7,
-    "activeBooks": 29,
-    "avgSpeedPph": 63.7,
+    "avgSessionMin": 16.1,
+    "activeBooks": 30,
+    "avgSpeedPph": 63.6,
     "avgSecPerPage": 56.6,
-    "currentStreak": 8,
-    "maxStreak": 8,
-    "nightOwlRatio": 4.5,
-    "totalHighlights": 43
+    "currentStreak": 9,
+    "maxStreak": 9,
+    "nightOwlRatio": 7.2,
+    "totalHighlights": 49
   },
   "metrics": {
     "all": {
-      "label": "2026-07-13 ~ 2026-07-29",
-      "days": 17,
-      "daysWithReading": 15,
-      "totalHours": 19.6,
-      "totalMinutes": 1176,
-      "totalPages": 1248,
-      "totalSessions": 75,
-      "avgSessionMin": 15.7,
+      "label": "2026-07-13 ~ 2026-07-30",
+      "days": 18,
+      "daysWithReading": 16,
+      "totalHours": 20.9,
+      "totalMinutes": 1252,
+      "totalPages": 1328,
+      "totalSessions": 78,
+      "avgSessionMin": 16.1,
       "maxSessionMin": 165.3,
-      "activeBooks": 29,
-      "avgSpeedPph": 63.7,
+      "activeBooks": 30,
+      "avgSpeedPph": 63.6,
       "avgSecPerPage": 56.6,
-      "nightOwlRatio": 4.5,
-      "avgDailyMin": 69.2,
-      "currentStreak": 8,
-      "maxStreak": 8,
-      "totalHighlights": 43
+      "nightOwlRatio": 7.2,
+      "avgDailyMin": 69.6,
+      "currentStreak": 9,
+      "maxStreak": 9,
+      "totalHighlights": 49
     },
     "week": {
       "label": "07-24 ~ 07-30",
       "days": 7,
-      "daysWithReading": 6,
-      "totalHours": 8.2,
-      "totalMinutes": 490,
-      "totalPages": 451,
-      "totalSessions": 24,
-      "avgSessionMin": 20.4,
+      "daysWithReading": 7,
+      "totalHours": 9.4,
+      "totalMinutes": 566,
+      "totalPages": 531,
+      "totalSessions": 27,
+      "avgSessionMin": 21.0,
       "maxSessionMin": 165.3,
-      "activeBooks": 3,
-      "avgSpeedPph": 55.2,
-      "avgSecPerPage": 65.3,
-      "nightOwlRatio": 5.2,
-      "avgDailyMin": 70.1,
-      "currentStreak": 8,
-      "maxStreak": 8,
+      "activeBooks": 4,
+      "avgSpeedPph": 56.2,
+      "avgSecPerPage": 64.0,
+      "nightOwlRatio": 10.9,
+      "avgDailyMin": 81.0,
+      "currentStreak": 9,
+      "maxStreak": 9,
       "start": "2026-07-24",
       "end": "2026-07-30"
     },
     "today": {
-      "label": "07-29",
+      "label": "07-30",
       "days": 1,
       "daysWithReading": 1,
-      "totalHours": 1.4,
-      "totalMinutes": 82,
-      "totalPages": 62,
-      "totalSessions": 7,
-      "avgSessionMin": 11.8,
-      "maxSessionMin": 39.4,
-      "activeBooks": 2,
-      "avgSpeedPph": 45.0,
-      "avgSecPerPage": 80.0,
-      "nightOwlRatio": 7.6,
-      "avgDailyMin": 82.7,
-      "currentStreak": 8,
-      "maxStreak": 8,
-      "date": "2026-07-29"
+      "totalHours": 1.3,
+      "totalMinutes": 76,
+      "totalPages": 80,
+      "totalSessions": 3,
+      "avgSessionMin": 25.4,
+      "maxSessionMin": 36.2,
+      "activeBooks": 1,
+      "avgSpeedPph": 63.0,
+      "avgSecPerPage": 57.1,
+      "nightOwlRatio": 47.5,
+      "avgDailyMin": 76.2,
+      "currentStreak": 9,
+      "maxStreak": 9,
+      "date": "2026-07-30"
     }
   },
   "heatmap": {
@@ -97,16 +97,17 @@
     "2026-07-26": 60.6,
     "2026-07-27": 66.2,
     "2026-07-28": 68.5,
-    "2026-07-29": 82.7
+    "2026-07-29": 82.7,
+    "2026-07-30": 76.2
   },
   "recent": {
     "title": "巴菲特传",
-    "time": "2026-07-29 21:44"
+    "time": "2026-07-30 20:04"
   },
   "timeDistribution": [
     {
       "hour": "00:00",
-      "hours": 0.3
+      "hours": 0.9
     },
     {
       "hour": "01:00",
@@ -178,15 +179,15 @@
     },
     {
       "hour": "18:00",
-      "hours": 0.1
+      "hours": 0.33
     },
     {
       "hour": "19:00",
-      "hours": 2.98
+      "hours": 3.31
     },
     {
       "hour": "20:00",
-      "hours": 1.06
+      "hours": 1.16
     },
     {
       "hour": "21:00",
@@ -257,6 +258,19 @@
     {
       "rank": 5,
       "medal": "5️⃣",
+      "title": "巴菲特传",
+      "duration": "1.3h",
+      "hours": 1.27,
+      "progress": 26.4,
+      "eta": "8.5h",
+      "highlights": 6,
+      "highlightDensity": 4.7,
+      "readingMode": "📝 随手记",
+      "status": "reading"
+    },
+    {
+      "rank": 6,
+      "medal": "6",
       "title": "你一年的8760小时",
       "duration": "40m",
       "hours": 0.68,
@@ -268,8 +282,8 @@
       "status": "reading"
     },
     {
-      "rank": 6,
-      "medal": "6",
+      "rank": 7,
+      "medal": "7",
       "title": "国富论",
       "duration": "35m",
       "hours": 0.6,
@@ -281,8 +295,8 @@
       "status": "reading"
     },
     {
-      "rank": 7,
-      "medal": "7",
+      "rank": 8,
+      "medal": "8",
       "title": "快速阅读",
       "duration": "33m",
       "hours": 0.55,
@@ -294,8 +308,8 @@
       "status": "finished"
     },
     {
-      "rank": 8,
-      "medal": "8",
+      "rank": 9,
+      "medal": "9",
       "title": "高效决策法系列：原则+对赌+富人思维+思维的发现+助推",
       "duration": "29m",
       "hours": 0.49,
@@ -307,8 +321,8 @@
       "status": "reading"
     },
     {
-      "rank": 9,
-      "medal": "9",
+      "rank": 10,
+      "medal": "10",
       "title": "学会写作：自我进阶的高效方法",
       "duration": "28m",
       "hours": 0.48,
@@ -318,24 +332,11 @@
       "highlightDensity": 20.7,
       "readingMode": "💡 干货研读",
       "status": "reading"
-    },
-    {
-      "rank": 10,
-      "medal": "10",
-      "title": "一网打尽：贝佐斯与亚马逊时代",
-      "duration": "12m",
-      "hours": 0.21,
-      "progress": 6.7,
-      "eta": "3.3h",
-      "highlights": 0,
-      "highlightDensity": 0.0,
-      "readingMode": "🌊 纯沉浸",
-      "status": "reading"
     }
   ],
   "last7Days": {
-    "totalHours": 8.2,
-    "avgDailyMin": 70.1,
+    "totalHours": 9.4,
+    "avgDailyMin": 81.0,
     "chart": [
       {
         "day": "07-24",
@@ -363,7 +364,7 @@
       },
       {
         "day": "07-30",
-        "minutes": 0.0
+        "minutes": 76.2
       }
     ],
     "topBooks": [
@@ -376,8 +377,8 @@
         "hours": 3.6
       },
       {
-        "title": "Summary of logs/ccdb on KPPMainAppV2_5409_002-juno_16020101_muscat_wario-409747_crash_Jul_29_00.23.57_2026.html",
-        "hours": 0.0
+        "title": "巴菲特传",
+        "hours": 1.3
       }
     ]
   }
