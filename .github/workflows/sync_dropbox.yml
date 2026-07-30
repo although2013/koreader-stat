@@ -2,8 +2,12 @@ name: 🔄 自动获取 Dropbox 数据库并更新阅读数据 JSON
 
 on:
   schedule:
-    # UTC 时间每日凌晨 0:00 (北京时间早上 8:00) 自动触发
-    - cron: '0 0 * * *'
+    # cron 只认 UTC。东京时间 = UTC + 9，故 UTC 时刻 = 目标 JST 时刻 - 9 小时。
+    # 刻意避开整点：GitHub 的 schedule 是共享队列，整点（尤其 UTC 00:00）最拥堵，
+    # 之前用 '0 0 * * *' 实测被延迟了约 3 小时。
+    # 注：数据的日界线由 export_stats.py 的 TZ_OFFSET_HOURS 决定，与本 cron 时刻无关。
+    - cron: '45 21 * * *'  # UTC 21:45 (前一日) = JST 次日 06:45 早上
+    - cron: '45 11 * * *'  # UTC 11:45          = JST 同日 20:45 晚上
   workflow_dispatch: # 允许在 GitHub 页面手动点击按钮随时运行
 
 jobs:
