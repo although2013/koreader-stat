@@ -273,13 +273,9 @@
     }
   ],
   "last7Days": {
-    "totalHours": 10.4,
-    "avgDailyMin": 88.9,
+    "totalHours": 8.7,
+    "avgDailyMin": 74.9,
     "chart": [
-      {
-        "day": "07-23",
-        "minutes": 97.5
-      },
       {
         "day": "07-24",
         "minutes": 24.5
@@ -303,12 +299,16 @@
       {
         "day": "07-29",
         "minutes": 97.5
+      },
+      {
+        "day": "07-30",
+        "minutes": 0.0
       }
     ],
     "topBooks": [
       {
         "title": "滚雪球：巴菲特和他的财富人生",
-        "hours": 6.2
+        "hours": 4.6
       },
       {
         "title": "巴菲特传",
