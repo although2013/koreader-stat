@@ -3,7 +3,7 @@
     "start": "2026-07-13",
     "end": "2026-07-30",
     "totalDays": 18,
-    "updatedAt": "2026-07-30",
+    "updatedAt": "2026-07-31",
     "timezone": "UTC+9",
     "tzOffsetHours": 9
   },
@@ -43,24 +43,24 @@
       "totalHighlights": 49
     },
     "week": {
-      "label": "07-24 ~ 07-30",
+      "label": "07-25 ~ 07-31",
       "days": 7,
-      "daysWithReading": 7,
-      "totalHours": 9.4,
-      "totalMinutes": 566,
-      "totalPages": 382,
-      "totalSessions": 27,
-      "avgSessionMin": 21.0,
+      "daysWithReading": 6,
+      "totalHours": 9.2,
+      "totalMinutes": 552,
+      "totalPages": 375,
+      "totalSessions": 26,
+      "avgSessionMin": 21.2,
       "maxSessionMin": 165.3,
       "activeBooks": 4,
-      "avgSpeedPph": 40.4,
-      "avgSecPerPage": 89.0,
-      "nightOwlRatio": 10.9,
-      "avgDailyMin": 81.0,
+      "avgSpeedPph": 40.7,
+      "avgSecPerPage": 88.4,
+      "nightOwlRatio": 11.2,
+      "avgDailyMin": 78.9,
       "currentStreak": 9,
       "maxStreak": 9,
-      "start": "2026-07-24",
-      "end": "2026-07-30"
+      "start": "2026-07-25",
+      "end": "2026-07-31"
     },
     "today": {
       "label": "07-30",
@@ -352,13 +352,9 @@
     }
   ],
   "last7Days": {
-    "totalHours": 9.4,
-    "avgDailyMin": 81.0,
+    "totalHours": 9.2,
+    "avgDailyMin": 78.9,
     "chart": [
-      {
-        "day": "07-24",
-        "minutes": 14.4
-      },
       {
         "day": "07-25",
         "minutes": 198.4
@@ -382,12 +378,16 @@
       {
         "day": "07-30",
         "minutes": 76.2
+      },
+      {
+        "day": "07-31",
+        "minutes": 0.0
       }
     ],
     "topBooks": [
       {
         "title": "滚雪球：巴菲特和他的财富人生",
-        "hours": 4.6
+        "hours": 4.3
       },
       {
         "title": "巴菲特传",
