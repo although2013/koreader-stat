@@ -28,21 +28,21 @@ function HeatmapLegend() {
   );
 }
 
-function HeatmapCard({ heatmapData = {} }) {
+function HeatmapCard({ heatmapData = {}, tzOffset = 0 }) {
   const heatmapRef = useRef(null);
 
-  // 生成过去 365 天的连续日期数组
+  // 生成过去 365 天的连续日期数组。
+  // 按整 24 小时回退 + 目标时区换算：偏移固定的时区（如东京，无夏令时）下，
+  // 无论浏览器在哪，都能得到同一串连续日期，与 JSON 的日期 key 严格对齐。
   const days = useMemo(() => {
     const result = [];
-    const today = new Date();
+    const now = Date.now();
     for (let i = HEATMAP_DAYS - 1; i >= 0; i--) {
-      const d = new Date();
-      d.setDate(today.getDate() - i);
-      const dateStr = d.toISOString().split('T')[0];
+      const dateStr = dateStrInTz(new Date(now - i * DAY_MS), tzOffset);
       result.push({ date: dateStr, minutes: heatmapData[dateStr] || 0 });
     }
     return result;
-  }, [heatmapData]);
+  }, [heatmapData, tzOffset]);
 
   // 数据准备完毕后，自动滚动到最右边（最新数据处）
   useEffect(() => {

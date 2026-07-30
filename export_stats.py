@@ -8,6 +8,63 @@ import numpy as np
 DB_PATH = 'statistics.sqlite3'
 JSON_OUTPUT_PATH = 'public/reading_data.json'  # Cloudflare Pages 静态资源目录
 
+# ⚙️ 时区的唯一定义处：改这一个数字，Python 与前端的日界线会一起跟着变
+#    （前端不硬编码时区，而是读 JSON 里的 period.tzOffsetHours）
+# 日期与小时口径都以此为准，不依赖运行环境的本地时区，否则同一份 DB
+# 在本机 +9 与 GitHub Actions UTC 上会算出不同结果。
+TZ_OFFSET_HOURS = 9  # Asia/Tokyo
+TZ = timezone(timedelta(hours=TZ_OFFSET_HOURS))
+SQLITE_TZ_MODIFIER = f'{TZ_OFFSET_HOURS:+d} hours'  # 供 SQLite datetime() 使用
+
+SESSION_GAP_SEC = 600  # 间隔超过 10 分钟即视为新的阅读会话
+
+
+def to_local_datetime(epoch_series):
+    """Unix 时间戳 -> 目标时区的 naive datetime，便于直接取 .dt.date / .dt.hour"""
+    return (
+        pd.to_datetime(epoch_series, unit='s', utc=True)
+        .dt.tz_convert(TZ)
+        .dt.tz_localize(None)
+    )
+
+
+def split_sessions(df):
+    """按「间隔 > 10 分钟或换书」切分会话，返回每个会话的时长（分钟）"""
+    if df.empty:
+        return pd.Series(dtype='float64')
+
+    df = df.sort_values('start_time')
+    gap = df['start_time'] - (df['start_time'].shift(1) + df['duration'].shift(1))
+    new_session = (gap > SESSION_GAP_SEC) | (df['id_book'] != df['id_book'].shift(1))
+    return df.groupby(new_session.cumsum())['duration'].sum() / 60.0
+
+
+def build_metrics(df, label, days):
+    """计算一个时间切片的指标组。df 需已带 date / hour 列（统一时区口径）"""
+    total_sec = int(df['duration'].sum())
+    total_pages = len(df)
+    total_hrs = total_sec / 3600.0
+    sessions = split_sessions(df)
+    night_sec = int(df.loc[df['hour'] < 6, 'duration'].sum()) if total_pages else 0
+
+    return {
+        "label": label,
+        "days": days,
+        "daysWithReading": int(df['date'].nunique()),
+        "totalHours": round(total_hrs, 1),
+        "totalMinutes": int(total_sec // 60),
+        "totalPages": total_pages,
+        "totalSessions": int(len(sessions)),
+        "avgSessionMin": round(float(sessions.mean()), 1) if len(sessions) else 0.0,
+        "maxSessionMin": round(float(sessions.max()), 1) if len(sessions) else 0.0,
+        "activeBooks": int(df['id_book'].nunique()),
+        "avgSpeedPph": round(total_pages / total_hrs, 1) if total_sec > 0 else 0.0,
+        "avgSecPerPage": round(total_sec / total_pages, 1) if total_pages > 0 else 0.0,
+        "nightOwlRatio": round(night_sec / total_sec * 100, 1) if total_sec > 0 else 0.0,
+        "avgDailyMin": round((total_sec / 60.0) / days, 1) if days > 0 else 0.0,
+    }
+
+
 def calculate_streaks(dates):
     """计算连续阅读打卡天数 (Streak)"""
     if not dates:
@@ -31,19 +88,19 @@ def calculate_streaks(dates):
 
 def get_daily_heatmap(cursor):
     """提取过去 365 天每天的阅读时长（分钟），使用 KOReader 的 page_stat_data 表"""
-    one_year_ago = (datetime.now() - timedelta(days=365)).strftime('%Y-%m-%d')
-    
-    # 适配 KOReader 的真实数据表 page_stat_data
-    query = """
-        SELECT 
-            date(start_time, 'unixepoch', 'localtime') as read_date,
+    one_year_ago = (datetime.now(TZ) - timedelta(days=365)).strftime('%Y-%m-%d')
+
+    # 日界线用固定偏移，不用 'localtime'（后者跟运行环境走，CI 与本机会不一致）
+    query = f"""
+        SELECT
+            date(start_time, 'unixepoch', '{SQLITE_TZ_MODIFIER}') as read_date,
             SUM(duration) / 60.0 as minutes
         FROM page_stat_data
-        WHERE date(start_time, 'unixepoch', 'localtime') >= ?
+        WHERE date(start_time, 'unixepoch', '{SQLITE_TZ_MODIFIER}') >= ?
         GROUP BY read_date
         ORDER BY read_date ASC
     """
-    
+
     cursor.execute(query, (one_year_ago,))
     rows = cursor.fetchall()
     
@@ -63,43 +120,46 @@ def generate_web_json(conn):
         print("⚠️ 数据库中没有找到阅读记录。")
         return
 
-    # 1. 基础汇总
-    total_sec = page_stats['duration'].sum()
-    total_hrs = round(total_sec / 3600.0, 1)
-    total_mins = int(total_sec // 60)
-    total_pages = len(page_stats)
+    # 1. 统一时区的时间列：后续所有 date / hour 口径都基于它
+    page_stats['dt'] = to_local_datetime(page_stats['start_time'])
+    page_stats['date'] = page_stats['dt'].dt.date
+    page_stats['hour'] = page_stats['dt'].dt.hour
 
-    # 2. 速度与划线
-    avg_speed_pph = round(total_pages / (total_sec / 3600.0), 1) if total_sec > 0 else 0
-    avg_sec_per_page = round(total_sec / total_pages, 1) if total_pages > 0 else 0
+    # 2. 划线与书目（book 表只有累计值，无时间戳，因此无法按周期拆分）
     total_highlights = int(books_df['highlights'].sum()) if not books_df.empty else 0
     total_books = len(books_df)
 
     # 3. 日期打卡
-    page_stats['dt'] = pd.to_datetime(page_stats['start_time'], unit='s')
-    page_stats['date'] = page_stats['dt'].dt.date
     unique_dates = sorted(page_stats['date'].unique())
-
     start_date_str = unique_dates[0].strftime("%Y-%m-%d") if unique_dates else "N/A"
     end_date_str = unique_dates[-1].strftime("%Y-%m-%d") if unique_dates else "N/A"
     total_calendar_days = (unique_dates[-1] - unique_dates[0]).days + 1 if len(unique_dates) > 1 else len(unique_dates)
     curr_streak, max_streak = calculate_streaks(unique_dates)
 
-    # 4. 会话分析 (>10分钟间隔算新会话)
-    page_stats['gap'] = page_stats['start_time'] - (page_stats['start_time'].shift(1) + page_stats['duration'].shift(1))
-    page_stats['new_session'] = (page_stats['gap'] > 600) | (page_stats['id_book'] != page_stats['id_book'].shift(1))
-    page_stats['session_id'] = page_stats['new_session'].cumsum()
-    sessions = page_stats.groupby('session_id')['duration'].sum() / 60.0
-    total_sessions = len(sessions)
-    avg_session_min = round(sessions.mean(), 1)
-    max_session_min = round(sessions.max(), 1)
+    # 4. 三档周期切片：总计 / 本周（最近 7 天滚动）/ 当天
+    today_local = datetime.now(TZ).date()
+    week_start = today_local - timedelta(days=6)  # 含今天在内共 7 天
+    last_logged_date = unique_dates[-1]           # 「当天」以最后有记录的一天为准
 
-    # 5. 夜猫子指数 (00:00 - 06:00 时段比例)
-    page_stats['hour'] = page_stats['dt'].dt.hour
-    night_sec = page_stats[page_stats['hour'].isin([0, 1, 2, 3, 4, 5])]['duration'].sum()
-    night_ratio = round((night_sec / total_sec) * 100, 1) if total_sec > 0 else 0
+    week_df = page_stats[page_stats['date'] >= week_start]
+    today_df = page_stats[page_stats['date'] == last_logged_date]
 
-    # 5.1 生成 24 小时阅读时长分布数据
+    metrics = {
+        "all": build_metrics(page_stats, f"{start_date_str} ~ {end_date_str}", total_calendar_days),
+        "week": build_metrics(week_df, f"{week_start:%m-%d} ~ {today_local:%m-%d}", 7),
+        "today": build_metrics(today_df, f"{last_logged_date:%m-%d}", 1),
+    }
+    # Streak 是跨周期概念，三档共用同一个全局值；划线只有总计口径
+    for block in metrics.values():
+        block["currentStreak"] = curr_streak
+        block["maxStreak"] = max_streak
+    metrics["all"]["totalHighlights"] = total_highlights
+    metrics["all"]["activeBooks"] = total_books  # 总计沿用「全库有阅读时长的书」口径
+    metrics["week"]["start"] = week_start.strftime("%Y-%m-%d")
+    metrics["week"]["end"] = today_local.strftime("%Y-%m-%d")
+    metrics["today"]["date"] = last_logged_date.strftime("%Y-%m-%d")
+
+    # 5. 生成 24 小时阅读时长分布数据
     hourly_duration = page_stats.groupby('hour')['duration'].sum() / 3600.0
     time_distribution = [
         {"hour": f"{h:02d}:00", "hours": round(hourly_duration.get(h, 0.0), 2)}
@@ -151,18 +211,17 @@ def generate_web_json(conn):
             "status": "finished" if r['progress_pct'] >= 100 else "reading"
         })
     
-    # 🌟 新增：提取最近 7 天阅读数据
-    seven_days_ago = (datetime.now() - timedelta(days=6)).date() # 包含今天在内共 7 天
-    recent_7days_df = page_stats[page_stats['date'] >= seven_days_ago]
+    # 🌟 最近 7 天阅读数据（与「本周」Tab 同一口径，直接复用上面的切片）
+    recent_7days_df = week_df
 
     # 1. 每日阅读时长 (分钟) 柱状图数据
     daily_7days = (
         recent_7days_df.groupby('date')['duration'].sum() / 60.0
     ).reindex(
-        [seven_days_ago + timedelta(days=i) for i in range(7)], 
+        [week_start + timedelta(days=i) for i in range(7)],
         fill_value=0
     )
-    
+
     recent_7days_chart = [
         {
             "day": d.strftime("%m-%d"),
@@ -171,12 +230,7 @@ def generate_web_json(conn):
         for d, mins in daily_7days.items()
     ]
 
-    # 2. 7 天基础汇总
-    total_7days_sec = recent_7days_df['duration'].sum()
-    total_7days_hrs = round(total_7days_sec / 3600.0, 1)
-    avg_7days_daily_min = round((total_7days_sec / 60.0) / 7.0, 1)
-
-    # 3. 7 天主攻图书 Top 3
+    # 2. 7 天主攻图书 Top 3
     recent_7days_books = (
         recent_7days_df.groupby('id_book')['duration'].sum()
         .reset_index()
@@ -200,32 +254,28 @@ def generate_web_json(conn):
     last_record = page_stats.sort_values(by='start_time', ascending=False).iloc[0]
     last_book_row = books_df[books_df['id'] == last_record['id_book']].iloc[0]
     last_book_title = last_book_row['title'].split('（')[0].split('(')[0].strip()
-    last_time = (datetime.fromtimestamp(last_record['start_time'], timezone.utc) + timedelta(hours=8)).strftime("%Y-%m-%d %H:%M")
-    update_date_str = (datetime.now(timezone.utc) + timedelta(hours=8)).strftime("%Y-%m-%d")
+    last_time = datetime.fromtimestamp(int(last_record['start_time']), TZ).strftime("%Y-%m-%d %H:%M")
+    update_date_str = datetime.now(TZ).strftime("%Y-%m-%d")
 
     # 8. 组装 JSON 对象
+    # overall 是 metrics.all 的旧版别名，保留以兼容尚未更新的前端缓存
+    overall = {key: metrics["all"][key] for key in (
+        "totalHours", "totalMinutes", "totalPages", "totalSessions", "maxSessionMin",
+        "avgSessionMin", "activeBooks", "avgSpeedPph", "avgSecPerPage",
+        "currentStreak", "maxStreak", "nightOwlRatio", "totalHighlights",
+    )}
+
     web_data = {
         "period": {
             "start": start_date_str,
             "end": end_date_str,
             "totalDays": total_calendar_days,
-            "updatedAt": update_date_str
+            "updatedAt": update_date_str,
+            "timezone": f"UTC{TZ_OFFSET_HOURS:+d}",   # 展示用
+            "tzOffsetHours": TZ_OFFSET_HOURS          # 前端据此切分日界线
         },
-        "overall": {
-            "totalHours": total_hrs,
-            "totalMinutes": total_mins,
-            "totalPages": total_pages,
-            "totalSessions": total_sessions,
-            "maxSessionMin": max_session_min,
-            "avgSessionMin": avg_session_min,
-            "activeBooks": total_books,
-            "avgSpeedPph": avg_speed_pph,
-            "avgSecPerPage": avg_sec_per_page,
-            "currentStreak": curr_streak,
-            "maxStreak": max_streak,
-            "nightOwlRatio": night_ratio,
-            "totalHighlights": total_highlights
-        },
+        "overall": overall,
+        "metrics": metrics,
         "heatmap": get_daily_heatmap(cursor), # 传入正确的 cursor
         "recent": {
             "title": last_book_title,
@@ -235,10 +285,10 @@ def generate_web_json(conn):
         "books": books_list
     }
 
-    # 将 7 天数据写入 web_data 字典
+    # 将 7 天数据写入 web_data 字典（汇总值直接取 metrics.week，保证与「本周」Tab 一致）
     web_data["last7Days"] = {
-        "totalHours": total_7days_hrs,
-        "avgDailyMin": avg_7days_daily_min,
+        "totalHours": metrics["week"]["totalHours"],
+        "avgDailyMin": metrics["week"]["avgDailyMin"],
         "chart": recent_7days_chart,
         "topBooks": top_7days_books
     }

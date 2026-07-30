@@ -9,6 +9,16 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* 切换周期 Tab 时指标卡的淡入过渡 */
+@keyframes metric-fade {
+  from { opacity: 0.35; }
+  to { opacity: 1; }
+}
+
+.metric-fade {
+  animation: metric-fade 150ms ease-out;
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
