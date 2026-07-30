@@ -42,7 +42,9 @@ def split_sessions(df):
 def build_metrics(df, label, days):
     """计算一个时间切片的指标组。df 需已带 date / hour 列（统一时区口径）"""
     total_sec = int(df['duration'].sum())
-    total_pages = len(df)
+    # KOReader's page count is based on distinct pages. Re-visiting a page should
+    # add reading time but not inflate the number of pages read.
+    total_pages = len(df.drop_duplicates(subset=['id_book', 'page']))
     total_hrs = total_sec / 3600.0
     sessions = split_sessions(df)
     night_sec = int(df.loc[df['hour'] < 6, 'duration'].sum()) if total_pages else 0
@@ -143,6 +145,8 @@ def generate_web_json(conn):
 
     week_df = page_stats[page_stats['date'] >= week_start]
     today_df = page_stats[page_stats['date'] == last_logged_date]
+    previous_date = last_logged_date - timedelta(days=1)
+    previous_day_df = page_stats[page_stats['date'] == previous_date]
 
     metrics = {
         "all": build_metrics(page_stats, f"{start_date_str} ~ {end_date_str}", total_calendar_days),
@@ -158,6 +162,9 @@ def generate_web_json(conn):
     metrics["week"]["start"] = week_start.strftime("%Y-%m-%d")
     metrics["week"]["end"] = today_local.strftime("%Y-%m-%d")
     metrics["today"]["date"] = last_logged_date.strftime("%Y-%m-%d")
+    # Provide the previous calendar day for the daily comparison badges.
+    metrics["today"]["previousDay"] = build_metrics(previous_day_df, f"{previous_date:%m-%d}", 1)
+    metrics["today"]["previousDay"]["date"] = previous_date.strftime("%Y-%m-%d")
 
     # 5. 生成 24 小时阅读时长分布数据
     hourly_duration = page_stats.groupby('hour')['duration'].sum() / 3600.0
