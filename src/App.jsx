@@ -1,13 +1,25 @@
 /* 页面骨架：只负责取数据 + 按顺序拼装各个卡片 */
 
+import { useReadingData } from './hooks/useReadingData.js';
+import { tzOffsetFromPeriod } from './lib/time.js';
+import { BookProgressCard } from './components/BookProgressCard.jsx';
+import { DashboardHeader } from './components/DashboardHeader.jsx';
+import { HeatmapCard } from './components/HeatmapCard.jsx';
+import { HourlyDistributionCard } from './components/HourlyDistributionCard.jsx';
+import { MetricsGrid } from './components/MetricsGrid.jsx';
+import { PeriodTabs, usePeriodTab } from './components/PeriodTabs.jsx';
+import { ErrorScreen, LoadingScreen } from './components/StatusScreen.jsx';
+import { TopBooksCard } from './components/TopBooksCard.jsx';
+import { WeeklyReportCard } from './components/WeeklyReportCard.jsx';
+
 // 兼容旧版 JSON（还没有 metrics 段时退化成只有「总计」一档）
-function readMetrics(data) {
+export function readMetrics(data) {
   if (data.metrics) return data.metrics;
   if (!data.overall) return null;
   return { all: { ...data.overall, label: `${data.period?.start || ''} ~ ${data.period?.end || ''}` } };
 }
 
-function App() {
+export default function App() {
   const { data, error } = useReadingData();
   const [period, setPeriod] = usePeriodTab();
 

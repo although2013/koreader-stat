@@ -1,6 +1,6 @@
 /* 数据加载中 / 加载失败的整屏占位 */
 
-function LoadingScreen() {
+export function LoadingScreen() {
   return (
     <div className="flex justify-center items-center min-h-screen text-slate-400">
       <div className="flex items-center gap-3">
@@ -11,7 +11,7 @@ function LoadingScreen() {
   );
 }
 
-function ErrorScreen({ message }) {
+export function ErrorScreen({ message }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-rose-400 gap-2">
       <p className="text-lg font-semibold">⚠️ 数据加载失败</p>

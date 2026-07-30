@@ -1,6 +1,6 @@
 /* 页头：标题 + 统计周期 + 最近在读 */
 
-function DashboardHeader({ period = {}, recent }) {
+export function DashboardHeader({ period = {}, recent }) {
   return (
     <header className="flex flex-col md:flex-row justify-between items-start md:items-center glass-card p-6 rounded-2xl border border-slate-800 gap-4">
       <div>

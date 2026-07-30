@@ -47,7 +47,7 @@ function highlightOrSessionCard(m, period) {
   return { title: '最长单次会话', icon: '⏳', value: `${m.maxSessionMin || 0}min`, sub: '期间内最久一次' };
 }
 
-function buildMetricCards(m, period) {
+export function buildMetricCards(m, period) {
   const isAll = period === 'all';
 
   return [
@@ -62,7 +62,7 @@ function buildMetricCards(m, period) {
   ];
 }
 
-function MetricsGrid({ metrics, period }) {
+export function MetricsGrid({ metrics, period }) {
   const current = metrics[period] || metrics.all || {};
 
   return (

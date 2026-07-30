@@ -1,6 +1,10 @@
 /* 24 小时阅读时段分布（面积图） */
 
-function HourlyDistributionCard({ timeDistribution = [] }) {
+import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { ChartCard } from './Card.jsx';
+import { AXIS_PROPS, TOOLTIP_CONTENT_STYLE } from '../lib/chartTheme.js';
+
+export function HourlyDistributionCard({ timeDistribution = [] }) {
   return (
     <ChartCard title="24小时阅读时段分布" icon="🌙" iconClass="bg-teal-500/10 text-teal-400">
       <div className="h-56 w-full">

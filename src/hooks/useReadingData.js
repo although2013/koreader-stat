@@ -1,8 +1,10 @@
 /* 读取 export_stats.py 生成的 reading_data.json */
 
+import { useEffect, useState } from 'react';
+
 const DATA_URL = './reading_data.json';
 
-function useReadingData() {
+export function useReadingData() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 

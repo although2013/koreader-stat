@@ -1,5 +1,9 @@
 /* 最近 7 天阅读动态：柱状图 + 主攻图书 */
 
+import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { ChartCard } from './Card.jsx';
+import { AXIS_PROPS, TOOLTIP_CONTENT_STYLE } from '../lib/chartTheme.js';
+
 function WeeklySummary({ totalHours, avgDailyMin }) {
   return (
     <div className="flex items-center gap-4 text-xs">
@@ -42,7 +46,7 @@ function WeeklyTopBooks({ books = [] }) {
   );
 }
 
-function WeeklyReportCard({ last7Days }) {
+export function WeeklyReportCard({ last7Days }) {
   return (
     <ChartCard
       title="最近 7 天阅读动态"

@@ -1,5 +1,9 @@
 /* 核心图书投入时长对比 Top 5（横向柱状图） */
 
+import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { ChartCard } from './Card.jsx';
+import { AXIS_PROPS, TOOLTIP_CONTENT_STYLE } from '../lib/chartTheme.js';
+
 const TOP_BOOK_COLORS = ['#10b981', '#06b6d4', '#6366f1', '#8b5cf6', '#a855f7'];
 
 // 单行 Y 轴刻度：书名过长时截断
@@ -16,7 +20,7 @@ function CustomYAxisTick({ x, y, payload }) {
   );
 }
 
-function TopBooksCard({ books }) {
+export function TopBooksCard({ books }) {
   const topBooks = books.slice(0, TOP_BOOK_COLORS.length);
 
   return (

@@ -1,0 +1,18 @@
+# Cloudflare Pages 缓存策略
+#
+# 构建产物（dist/assets/*）文件名带内容哈希，内容一变文件名就变，
+# 因此可以放心永久缓存 —— 重复访问一个字节都不用重新下载。
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# 数据文件名固定但内容每天更新两次，必须每次回源校验。
+# no-cache 不是「不缓存」，而是「使用前必须校验」：未变则返回 304，正文不重复下载。
+/reading_data.json
+  Cache-Control: no-cache
+
+# 入口 HTML 里引用了带哈希的资源名，必须保证拿到的是最新版本
+/index.html
+  Cache-Control: no-cache
+
+/
+  Cache-Control: no-cache

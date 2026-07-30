@@ -1,5 +1,8 @@
 /* 周期切换 Tab：总计 / 本周（最近 7 天滚动）/ 当天 */
 
+import { useEffect, useState } from 'react';
+import { dateStrInTz } from '../lib/time.js';
+
 const PERIOD_TABS = [
   { key: 'all', label: '总计' },
   { key: 'week', label: '本周' },
@@ -8,13 +11,13 @@ const PERIOD_TABS = [
 
 const PERIOD_KEYS = PERIOD_TABS.map(tab => tab.key);
 
-function periodFromHash() {
+export function periodFromHash() {
   const key = window.location.hash.replace('#', '');
   return PERIOD_KEYS.includes(key) ? key : 'all';
 }
 
 // Tab 状态同步到 URL hash，刷新后保持；也响应浏览器前进/后退
-function usePeriodTab() {
+export function usePeriodTab() {
   const [active, setActive] = useState(periodFromHash);
 
   useEffect(() => {
@@ -31,7 +34,7 @@ function usePeriodTab() {
   return [active, select];
 }
 
-function PeriodTabs({ metrics, active, onSelect, tzOffset = 0 }) {
+export function PeriodTabs({ metrics, active, onSelect, tzOffset = 0 }) {
   const tabs = PERIOD_TABS.filter(tab => metrics[tab.key]);
   const current = metrics[active] || {};
 

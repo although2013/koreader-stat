@@ -1,5 +1,9 @@
 /* GitHub 风格的 365 天阅读热力图，加载后自动吸附到最右侧（最新数据） */
 
+import { useEffect, useMemo, useRef } from 'react';
+import { Panel } from './Card.jsx';
+import { DAY_MS, dateStrInTz } from '../lib/time.js';
+
 // 单一数据源：limit 为该档位的上界（分钟），swatch 用于图例，cell 用于格子
 const HEATMAP_SCALE = [
   { limit: 0, swatch: 'bg-slate-800/50', cell: 'bg-slate-800/50 hover:border-slate-600' },
@@ -11,7 +15,7 @@ const HEATMAP_SCALE = [
 
 const HEATMAP_DAYS = 365;
 
-function heatmapCellClass(minutes) {
+export function heatmapCellClass(minutes) {
   if (minutes === 0) return HEATMAP_SCALE[0].cell;
   return HEATMAP_SCALE.find(level => minutes < level.limit).cell;
 }
@@ -28,7 +32,7 @@ function HeatmapLegend() {
   );
 }
 
-function HeatmapCard({ heatmapData = {}, tzOffset = 0 }) {
+export function HeatmapCard({ heatmapData = {}, tzOffset = 0 }) {
   const heatmapRef = useRef(null);
 
   // 生成过去 365 天的连续日期数组。

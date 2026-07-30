@@ -1,5 +1,7 @@
 /* 研读图书进度与预估 ETA */
 
+import { Panel } from './Card.jsx';
+
 function ProgressBar({ progress }) {
   return (
     <div className="flex items-center gap-2">
@@ -48,7 +50,7 @@ function BookProgressRow({ book }) {
   );
 }
 
-function BookProgressCard({ books }) {
+export function BookProgressCard({ books }) {
   return (
     <Panel className="space-y-4">
       <div className="flex items-center justify-between">
