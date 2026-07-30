@@ -32,6 +32,12 @@ function streakCard(m, period) {
   };
 }
 
+// 分钟数 -> HH:MM（1252 -> "20:52"）。用 totalMinutes 而非已四舍五入的 totalHours，保证与副文案一致
+function formatHoursMinutes(totalMinutes) {
+  const mins = Math.max(0, Math.round(totalMinutes || 0));
+  return `${String(Math.floor(mins / 60)).padStart(2, '0')}:${String(mins % 60).padStart(2, '0')}`;
+}
+
 // 时长副文案：总计给总分钟数，周期态给日均
 function durationSub(m, period) {
   if (period === 'all') return `${m.totalMinutes || 0} 分钟`;
@@ -51,7 +57,7 @@ export function buildMetricCards(m, period) {
   const isAll = period === 'all';
 
   return [
-    { title: '总阅读时长', icon: '⏱️', value: `${m.totalHours || 0}h`, sub: durationSub(m, period) },
+    { title: '总阅读时长', icon: '⏱️', value: formatHoursMinutes(m.totalMinutes), sub: durationSub(m, period) },
     { title: '总翻页数', icon: '📄', value: (m.totalPages || 0).toLocaleString(), sub: `${m.avgSpeedPph || 0} 页/小时` },
     streakCard(m, period),
     { title: '夜猫子指数', icon: '🌙', value: `${m.nightOwlRatio || 0}%`, sub: '00:00 - 06:00 时段' },
