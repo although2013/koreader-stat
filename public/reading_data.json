@@ -3,7 +3,7 @@
     "start": "2026-07-13",
     "end": "2026-08-01",
     "totalDays": 20,
-    "updatedAt": "2026-08-01",
+    "updatedAt": "2026-08-02",
     "timezone": "UTC+9",
     "tzOffsetHours": 9
   },
@@ -43,24 +43,24 @@
       "totalHighlights": 76
     },
     "week": {
-      "label": "07-26 ~ 08-01",
+      "label": "07-27 ~ 08-02",
       "days": 7,
-      "daysWithReading": 7,
-      "totalHours": 9.1,
-      "totalMinutes": 544,
-      "totalPages": 371,
-      "totalSessions": 29,
-      "avgSessionMin": 18.8,
+      "daysWithReading": 6,
+      "totalHours": 8.1,
+      "totalMinutes": 483,
+      "totalPages": 327,
+      "totalSessions": 27,
+      "avgSessionMin": 17.9,
       "maxSessionMin": 61.8,
-      "activeBooks": 4,
-      "avgSpeedPph": 40.9,
-      "avgSecPerPage": 88.0,
-      "nightOwlRatio": 11.3,
-      "avgDailyMin": 77.7,
+      "activeBooks": 3,
+      "avgSpeedPph": 40.6,
+      "avgSecPerPage": 88.7,
+      "nightOwlRatio": 12.8,
+      "avgDailyMin": 69.1,
       "currentStreak": 11,
       "maxStreak": 11,
-      "start": "2026-07-26",
-      "end": "2026-08-01"
+      "start": "2026-07-27",
+      "end": "2026-08-02"
     },
     "today": {
       "label": "08-01",
@@ -354,13 +354,9 @@
     }
   ],
   "last7Days": {
-    "totalHours": 9.1,
-    "avgDailyMin": 77.7,
+    "totalHours": 8.1,
+    "avgDailyMin": 69.1,
     "chart": [
-      {
-        "day": "07-26",
-        "minutes": 60.6
-      },
       {
         "day": "07-27",
         "minutes": 66.2
@@ -384,6 +380,10 @@
       {
         "day": "08-01",
         "minutes": 89.5
+      },
+      {
+        "day": "08-02",
+        "minutes": 0.0
       }
     ],
     "topBooks": [
@@ -396,8 +396,8 @@
         "hours": 3.6
       },
       {
-        "title": "滚雪球：巴菲特和他的财富人生",
-        "hours": 1.0
+        "title": "Summary of logs/ccdb on KPPMainAppV2_5409_002-juno_16020101_muscat_wario-409747_crash_Jul_29_00.23.57_2026.html",
+        "hours": 0.0
       }
     ]
   }
