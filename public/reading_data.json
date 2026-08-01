@@ -8,55 +8,55 @@
     "tzOffsetHours": 9
   },
   "overall": {
-    "totalHours": 22.8,
-    "totalMinutes": 1365,
-    "totalPages": 1131,
-    "totalSessions": 84,
+    "totalHours": 24.0,
+    "totalMinutes": 1442,
+    "totalPages": 1178,
+    "totalSessions": 86,
     "maxSessionMin": 165.3,
-    "avgSessionMin": 16.3,
+    "avgSessionMin": 16.8,
     "activeBooks": 30,
-    "avgSpeedPph": 49.7,
-    "avgSecPerPage": 72.4,
+    "avgSpeedPph": 49.0,
+    "avgSecPerPage": 73.5,
     "currentStreak": 11,
     "maxStreak": 11,
-    "nightOwlRatio": 6.6,
-    "totalHighlights": 66
+    "nightOwlRatio": 6.2,
+    "totalHighlights": 76
   },
   "metrics": {
     "all": {
       "label": "2026-07-13 ~ 2026-08-01",
       "days": 20,
       "daysWithReading": 18,
-      "totalHours": 22.8,
-      "totalMinutes": 1365,
-      "totalPages": 1131,
-      "totalSessions": 84,
-      "avgSessionMin": 16.3,
+      "totalHours": 24.0,
+      "totalMinutes": 1442,
+      "totalPages": 1178,
+      "totalSessions": 86,
+      "avgSessionMin": 16.8,
       "maxSessionMin": 165.3,
       "activeBooks": 30,
-      "avgSpeedPph": 49.7,
-      "avgSecPerPage": 72.4,
-      "nightOwlRatio": 6.6,
-      "avgDailyMin": 68.3,
+      "avgSpeedPph": 49.0,
+      "avgSecPerPage": 73.5,
+      "nightOwlRatio": 6.2,
+      "avgDailyMin": 72.1,
       "currentStreak": 11,
       "maxStreak": 11,
-      "totalHighlights": 66
+      "totalHighlights": 76
     },
     "week": {
       "label": "07-26 ~ 08-01",
       "days": 7,
       "daysWithReading": 7,
-      "totalHours": 7.8,
-      "totalMinutes": 467,
-      "totalPages": 324,
-      "totalSessions": 27,
-      "avgSessionMin": 17.3,
-      "maxSessionMin": 50.7,
+      "totalHours": 9.1,
+      "totalMinutes": 544,
+      "totalPages": 371,
+      "totalSessions": 29,
+      "avgSessionMin": 18.8,
+      "maxSessionMin": 61.8,
       "activeBooks": 4,
-      "avgSpeedPph": 41.6,
-      "avgSecPerPage": 86.5,
-      "nightOwlRatio": 13.2,
-      "avgDailyMin": 66.7,
+      "avgSpeedPph": 40.9,
+      "avgSecPerPage": 88.0,
+      "nightOwlRatio": 11.3,
+      "avgDailyMin": 77.7,
       "currentStreak": 11,
       "maxStreak": 11,
       "start": "2026-07-26",
@@ -66,17 +66,17 @@
       "label": "08-01",
       "days": 1,
       "daysWithReading": 1,
-      "totalHours": 0.2,
-      "totalMinutes": 12,
-      "totalPages": 8,
-      "totalSessions": 1,
-      "avgSessionMin": 12.7,
-      "maxSessionMin": 12.7,
+      "totalHours": 1.5,
+      "totalMinutes": 89,
+      "totalPages": 55,
+      "totalSessions": 3,
+      "avgSessionMin": 29.8,
+      "maxSessionMin": 61.8,
       "activeBooks": 1,
-      "avgSpeedPph": 37.9,
-      "avgSecPerPage": 95.0,
+      "avgSpeedPph": 36.9,
+      "avgSecPerPage": 97.7,
       "nightOwlRatio": 0.0,
-      "avgDailyMin": 12.7,
+      "avgDailyMin": 89.5,
       "currentStreak": 11,
       "maxStreak": 11,
       "date": "2026-08-01",
@@ -117,11 +117,11 @@
     "2026-07-29": 82.7,
     "2026-07-30": 79.0,
     "2026-07-31": 97.5,
-    "2026-08-01": 12.7
+    "2026-08-01": 89.5
   },
   "recent": {
     "title": "巴菲特传",
-    "time": "2026-08-01 20:01"
+    "time": "2026-08-01 22:08"
   },
   "timeDistribution": [
     {
@@ -206,15 +206,15 @@
     },
     {
       "hour": "20:00",
-      "hours": 1.21
+      "hours": 1.46
     },
     {
       "hour": "21:00",
-      "hours": 2.05
+      "hours": 2.94
     },
     {
       "hour": "22:00",
-      "hours": 2.84
+      "hours": 2.98
     },
     {
       "hour": "23:00",
@@ -239,6 +239,19 @@
       "rank": 2,
       "medal": "🥈",
       "title": "巴菲特传",
+      "duration": "4.4h",
+      "hours": 4.44,
+      "progress": 43.8,
+      "eta": "7.5h",
+      "highlights": 33,
+      "highlightDensity": 7.4,
+      "readingMode": "💡 干货研读",
+      "status": "reading"
+    },
+    {
+      "rank": 3,
+      "medal": "🥉",
+      "title": "巴菲特传",
       "duration": "3.6h",
       "hours": 3.61,
       "progress": 21.5,
@@ -249,8 +262,8 @@
       "status": "reading"
     },
     {
-      "rank": 3,
-      "medal": "🥉",
+      "rank": 4,
+      "medal": "4️⃣",
       "title": "2049：未来10000天的可能",
       "duration": "3.5h",
       "hours": 3.54,
@@ -260,19 +273,6 @@
       "highlightDensity": 3.7,
       "readingMode": "📝 随手记",
       "status": "finished"
-    },
-    {
-      "rank": 4,
-      "medal": "4️⃣",
-      "title": "巴菲特传",
-      "duration": "3.2h",
-      "hours": 3.15,
-      "progress": 37.4,
-      "eta": "8.0h",
-      "highlights": 23,
-      "highlightDensity": 7.3,
-      "readingMode": "💡 干货研读",
-      "status": "reading"
     },
     {
       "rank": 5,
@@ -354,8 +354,8 @@
     }
   ],
   "last7Days": {
-    "totalHours": 7.8,
-    "avgDailyMin": 66.7,
+    "totalHours": 9.1,
+    "avgDailyMin": 77.7,
     "chart": [
       {
         "day": "07-26",
@@ -383,17 +383,17 @@
       },
       {
         "day": "08-01",
-        "minutes": 12.7
+        "minutes": 89.5
       }
     ],
     "topBooks": [
       {
         "title": "巴菲特传",
-        "hours": 3.6
+        "hours": 4.4
       },
       {
         "title": "巴菲特传",
-        "hours": 3.2
+        "hours": 3.6
       },
       {
         "title": "滚雪球：巴菲特和他的财富人生",
