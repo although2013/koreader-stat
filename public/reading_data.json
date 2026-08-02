@@ -354,6 +354,284 @@
       "status": "reading"
     }
   ],
+  "calendarEntries": [
+    {
+      "date": "2026-07-13",
+      "bookId": 1,
+      "title": "KOReader Quickstart Guide",
+      "minutes": 0.6
+    },
+    {
+      "date": "2026-07-13",
+      "bookId": 2,
+      "title": "乌合之众—大众心理研究",
+      "minutes": 11.9
+    },
+    {
+      "date": "2026-07-13",
+      "bookId": 3,
+      "title": "人性的弱点",
+      "minutes": 7.5
+    },
+    {
+      "date": "2026-07-13",
+      "bookId": 4,
+      "title": "人生只有一件事",
+      "minutes": 5.1
+    },
+    {
+      "date": "2026-07-13",
+      "bookId": 5,
+      "title": "你一年的8760小时",
+      "minutes": 40.7
+    },
+    {
+      "date": "2026-07-13",
+      "bookId": 6,
+      "title": "国富论",
+      "minutes": 35.7
+    },
+    {
+      "date": "2026-07-13",
+      "bookId": 7,
+      "title": "天才在左疯子在右",
+      "minutes": 2.8
+    },
+    {
+      "date": "2026-07-13",
+      "bookId": 8,
+      "title": "ERROR: Error reading PDB format",
+      "minutes": 0.1
+    },
+    {
+      "date": "2026-07-13",
+      "bookId": 9,
+      "title": "一网打尽：贝佐斯与亚马逊时代（本书荣获2013年英国《金融时报》/高盛年度商业图书奖）",
+      "minutes": 12.7
+    },
+    {
+      "date": "2026-07-13",
+      "bookId": 10,
+      "title": "时间简史_[英]史蒂芬·霍金",
+      "minutes": 2.0
+    },
+    {
+      "date": "2026-07-14",
+      "bookId": 11,
+      "title": "2049：未来10000天的可能",
+      "minutes": 117.4
+    },
+    {
+      "date": "2026-07-15",
+      "bookId": 11,
+      "title": "2049：未来10000天的可能",
+      "minutes": 53.1
+    },
+    {
+      "date": "2026-07-17",
+      "bookId": 11,
+      "title": "2049：未来10000天的可能",
+      "minutes": 42.1
+    },
+    {
+      "date": "2026-07-17",
+      "bookId": 13,
+      "title": "Summary of logs/ccdb on KPPMainAppV2_5212_002-juno_16020101_muscat_wario-409747_crash_Jul_15_19.08.15_2026.html",
+      "minutes": 0.2
+    },
+    {
+      "date": "2026-07-17",
+      "bookId": 14,
+      "title": "穷查理宝典（珍藏版）（1+2册）",
+      "minutes": 6.0
+    },
+    {
+      "date": "2026-07-17",
+      "bookId": 15,
+      "title": "笑傲江湖4",
+      "minutes": 7.5
+    },
+    {
+      "date": "2026-07-17",
+      "bookId": 16,
+      "title": "自私的基因_[英]理查德·道金斯",
+      "minutes": 6.4
+    },
+    {
+      "date": "2026-07-18",
+      "bookId": 17,
+      "title": "父母的觉醒",
+      "minutes": 0.1
+    },
+    {
+      "date": "2026-07-18",
+      "bookId": 18,
+      "title": "我是个怪圈",
+      "minutes": 0.3
+    },
+    {
+      "date": "2026-07-18",
+      "bookId": 19,
+      "title": "快速阅读",
+      "minutes": 33.1
+    },
+    {
+      "date": "2026-07-18",
+      "bookId": 20,
+      "title": "学会写作：自我进阶的高效方法",
+      "minutes": 28.9
+    },
+    {
+      "date": "2026-07-18",
+      "bookId": 21,
+      "title": "毛泽东传（含图版）",
+      "minutes": 92.1
+    },
+    {
+      "date": "2026-07-18",
+      "bookId": 22,
+      "title": "娱乐至死 - 尼尔·波兹曼",
+      "minutes": 2.2
+    },
+    {
+      "date": "2026-07-18",
+      "bookId": 23,
+      "title": "Ji Yin Zu _Ren Lei Zi Chuan  - Ma Te _Li De Li",
+      "minutes": 0.2
+    },
+    {
+      "date": "2026-07-18",
+      "bookId": 24,
+      "title": "毛泽东传",
+      "minutes": 2.3
+    },
+    {
+      "date": "2026-07-18",
+      "bookId": 25,
+      "title": "投资最重要的事（中信商业经典）",
+      "minutes": 4.4
+    },
+    {
+      "date": "2026-07-18",
+      "bookId": 26,
+      "title": "高效决策法系列：原则+对赌+富人思维+思维的发现+助推（套装共5册）",
+      "minutes": 27.6
+    },
+    {
+      "date": "2026-07-19",
+      "bookId": 26,
+      "title": "高效决策法系列：原则+对赌+富人思维+思维的发现+助推（套装共5册）",
+      "minutes": 2.0
+    },
+    {
+      "date": "2026-07-19",
+      "bookId": 27,
+      "title": "毛泽东传:名著珍藏版",
+      "minutes": 1.0
+    },
+    {
+      "date": "2026-07-19",
+      "bookId": 28,
+      "title": "滚雪球：巴菲特和他的财富人生（套装共2册）",
+      "minutes": 6.8
+    },
+    {
+      "date": "2026-07-20",
+      "bookId": 28,
+      "title": "滚雪球：巴菲特和他的财富人生（套装共2册）",
+      "minutes": 2.4
+    },
+    {
+      "date": "2026-07-22",
+      "bookId": 27,
+      "title": "毛泽东传:名著珍藏版",
+      "minutes": 6.2
+    },
+    {
+      "date": "2026-07-23",
+      "bookId": 27,
+      "title": "毛泽东传:名著珍藏版",
+      "minutes": 2.0
+    },
+    {
+      "date": "2026-07-23",
+      "bookId": 28,
+      "title": "滚雪球：巴菲特和他的财富人生（套装共2册）",
+      "minutes": 122.0
+    },
+    {
+      "date": "2026-07-24",
+      "bookId": 28,
+      "title": "滚雪球：巴菲特和他的财富人生（套装共2册）",
+      "minutes": 14.4
+    },
+    {
+      "date": "2026-07-25",
+      "bookId": 28,
+      "title": "滚雪球：巴菲特和他的财富人生（套装共2册）",
+      "minutes": 198.4
+    },
+    {
+      "date": "2026-07-26",
+      "bookId": 28,
+      "title": "滚雪球：巴菲特和他的财富人生（套装共2册）",
+      "minutes": 60.6
+    },
+    {
+      "date": "2026-07-27",
+      "bookId": 29,
+      "title": "巴菲特传",
+      "minutes": 66.2
+    },
+    {
+      "date": "2026-07-28",
+      "bookId": 29,
+      "title": "巴菲特传",
+      "minutes": 68.5
+    },
+    {
+      "date": "2026-07-29",
+      "bookId": 29,
+      "title": "巴菲特传",
+      "minutes": 81.8
+    },
+    {
+      "date": "2026-07-29",
+      "bookId": 30,
+      "title": "Summary of logs/ccdb on KPPMainAppV2_5409_002-juno_16020101_muscat_wario-409747_crash_Jul_29_00.23.57_2026.html",
+      "minutes": 0.9
+    },
+    {
+      "date": "2026-07-30",
+      "bookId": 31,
+      "title": "巴菲特传",
+      "minutes": 79.0
+    },
+    {
+      "date": "2026-07-31",
+      "bookId": 31,
+      "title": "巴菲特传",
+      "minutes": 97.5
+    },
+    {
+      "date": "2026-08-01",
+      "bookId": 31,
+      "title": "巴菲特传",
+      "minutes": 98.3
+    },
+    {
+      "date": "2026-08-02",
+      "bookId": 26,
+      "title": "高效决策法系列：原则+对赌+富人思维+思维的发现+助推（套装共5册）",
+      "minutes": 71.6
+    },
+    {
+      "date": "2026-08-02",
+      "bookId": 31,
+      "title": "巴菲特传",
+      "minutes": 32.1
+    }
+  ],
   "last7Days": {
     "totalHours": 9.9,
     "avgDailyMin": 85.1,
