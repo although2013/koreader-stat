@@ -1,101 +1,101 @@
 {
   "period": {
     "start": "2026-07-13",
-    "end": "2026-08-01",
-    "totalDays": 20,
+    "end": "2026-08-02",
+    "totalDays": 21,
     "updatedAt": "2026-08-02",
     "timezone": "UTC+9",
     "tzOffsetHours": 9
   },
   "overall": {
-    "totalHours": 24.0,
-    "totalMinutes": 1442,
-    "totalPages": 1178,
-    "totalSessions": 86,
+    "totalHours": 25.9,
+    "totalMinutes": 1554,
+    "totalPages": 1263,
+    "totalSessions": 92,
     "maxSessionMin": 165.3,
-    "avgSessionMin": 16.8,
+    "avgSessionMin": 16.9,
     "activeBooks": 30,
-    "avgSpeedPph": 49.0,
-    "avgSecPerPage": 73.5,
-    "currentStreak": 11,
-    "maxStreak": 11,
-    "nightOwlRatio": 6.2,
-    "totalHighlights": 76
+    "avgSpeedPph": 48.7,
+    "avgSecPerPage": 73.9,
+    "currentStreak": 12,
+    "maxStreak": 12,
+    "nightOwlRatio": 6.9,
+    "totalHighlights": 95
   },
   "metrics": {
     "all": {
-      "label": "2026-07-13 ~ 2026-08-01",
-      "days": 20,
-      "daysWithReading": 18,
-      "totalHours": 24.0,
-      "totalMinutes": 1442,
-      "totalPages": 1178,
-      "totalSessions": 86,
-      "avgSessionMin": 16.8,
+      "label": "2026-07-13 ~ 2026-08-02",
+      "days": 21,
+      "daysWithReading": 19,
+      "totalHours": 25.9,
+      "totalMinutes": 1554,
+      "totalPages": 1263,
+      "totalSessions": 92,
+      "avgSessionMin": 16.9,
       "maxSessionMin": 165.3,
       "activeBooks": 30,
-      "avgSpeedPph": 49.0,
-      "avgSecPerPage": 73.5,
-      "nightOwlRatio": 6.2,
-      "avgDailyMin": 72.1,
-      "currentStreak": 11,
-      "maxStreak": 11,
-      "totalHighlights": 76
+      "avgSpeedPph": 48.7,
+      "avgSecPerPage": 73.9,
+      "nightOwlRatio": 6.9,
+      "avgDailyMin": 74.0,
+      "currentStreak": 12,
+      "maxStreak": 12,
+      "totalHighlights": 95
     },
     "week": {
       "label": "07-27 ~ 08-02",
       "days": 7,
-      "daysWithReading": 6,
-      "totalHours": 8.1,
-      "totalMinutes": 483,
-      "totalPages": 327,
-      "totalSessions": 27,
-      "avgSessionMin": 17.9,
-      "maxSessionMin": 61.8,
-      "activeBooks": 3,
-      "avgSpeedPph": 40.6,
-      "avgSecPerPage": 88.7,
-      "nightOwlRatio": 12.8,
-      "avgDailyMin": 69.1,
-      "currentStreak": 11,
-      "maxStreak": 11,
+      "daysWithReading": 7,
+      "totalHours": 9.9,
+      "totalMinutes": 595,
+      "totalPages": 413,
+      "totalSessions": 33,
+      "avgSessionMin": 18.1,
+      "maxSessionMin": 68.6,
+      "activeBooks": 4,
+      "avgSpeedPph": 41.6,
+      "avgSecPerPage": 86.6,
+      "nightOwlRatio": 13.4,
+      "avgDailyMin": 85.1,
+      "currentStreak": 12,
+      "maxStreak": 12,
       "start": "2026-07-27",
       "end": "2026-08-02"
     },
     "today": {
-      "label": "08-01",
+      "label": "08-02",
       "days": 1,
       "daysWithReading": 1,
-      "totalHours": 1.5,
-      "totalMinutes": 89,
-      "totalPages": 55,
-      "totalSessions": 3,
-      "avgSessionMin": 29.8,
-      "maxSessionMin": 61.8,
-      "activeBooks": 1,
-      "avgSpeedPph": 36.9,
-      "avgSecPerPage": 97.7,
-      "nightOwlRatio": 0.0,
-      "avgDailyMin": 89.5,
-      "currentStreak": 11,
-      "maxStreak": 11,
-      "date": "2026-08-01",
+      "totalHours": 1.7,
+      "totalMinutes": 103,
+      "totalPages": 83,
+      "totalSessions": 5,
+      "avgSessionMin": 20.8,
+      "maxSessionMin": 53.2,
+      "activeBooks": 2,
+      "avgSpeedPph": 48.0,
+      "avgSecPerPage": 75.0,
+      "nightOwlRatio": 17.7,
+      "avgDailyMin": 103.8,
+      "currentStreak": 12,
+      "maxStreak": 12,
+      "date": "2026-08-02",
       "previousDay": {
-        "label": "07-31",
+        "label": "08-01",
         "days": 1,
         "daysWithReading": 1,
         "totalHours": 1.6,
-        "totalMinutes": 97,
-        "totalPages": 72,
+        "totalMinutes": 98,
+        "totalPages": 60,
         "totalSessions": 4,
-        "avgSessionMin": 24.4,
-        "maxSessionMin": 50.1,
+        "avgSessionMin": 24.6,
+        "maxSessionMin": 68.6,
         "activeBooks": 1,
-        "avgSpeedPph": 44.3,
-        "avgSecPerPage": 81.3,
+        "avgSpeedPph": 36.6,
+        "avgSecPerPage": 98.3,
         "nightOwlRatio": 0.0,
-        "avgDailyMin": 97.5,
-        "date": "2026-07-31"
+        "avgDailyMin": 98.3,
+        "date": "2026-08-01"
       }
     }
   },
@@ -117,11 +117,12 @@
     "2026-07-29": 82.7,
     "2026-07-30": 79.0,
     "2026-07-31": 97.5,
-    "2026-08-01": 89.5
+    "2026-08-01": 98.3,
+    "2026-08-02": 103.8
   },
   "recent": {
     "title": "巴菲特传",
-    "time": "2026-08-01 22:08"
+    "time": "2026-08-02 22:21"
   },
   "timeDistribution": [
     {
@@ -130,7 +131,7 @@
     },
     {
       "hour": "01:00",
-      "hours": 0.33
+      "hours": 0.64
     },
     {
       "hour": "02:00",
@@ -182,11 +183,11 @@
     },
     {
       "hour": "14:00",
-      "hours": 1.2
+      "hours": 1.81
     },
     {
       "hour": "15:00",
-      "hours": 0.02
+      "hours": 0.76
     },
     {
       "hour": "16:00",
@@ -202,7 +203,7 @@
     },
     {
       "hour": "19:00",
-      "hours": 4.0
+      "hours": 4.03
     },
     {
       "hour": "20:00",
@@ -214,11 +215,11 @@
     },
     {
       "hour": "22:00",
-      "hours": 2.98
+      "hours": 3.12
     },
     {
       "hour": "23:00",
-      "hours": 0.6
+      "hours": 0.63
     }
   ],
   "books": [
@@ -239,12 +240,12 @@
       "rank": 2,
       "medal": "🥈",
       "title": "巴菲特传",
-      "duration": "4.4h",
-      "hours": 4.44,
-      "progress": 43.8,
-      "eta": "7.5h",
+      "duration": "5.1h",
+      "hours": 5.12,
+      "progress": 48.4,
+      "eta": "6.7h",
       "highlights": 33,
-      "highlightDensity": 7.4,
+      "highlightDensity": 6.4,
       "readingMode": "💡 干货研读",
       "status": "reading"
     },
@@ -277,6 +278,19 @@
     {
       "rank": 5,
       "medal": "5️⃣",
+      "title": "高效决策法系列：原则+对赌+富人思维+思维的发现+助推",
+      "duration": "1.7h",
+      "hours": 1.69,
+      "progress": 53.6,
+      "eta": "21.1h",
+      "highlights": 19,
+      "highlightDensity": 11.3,
+      "readingMode": "💡 干货研读",
+      "status": "reading"
+    },
+    {
+      "rank": 6,
+      "medal": "6",
       "title": "毛泽东传",
       "duration": "1.5h",
       "hours": 1.53,
@@ -288,8 +302,8 @@
       "status": "reading"
     },
     {
-      "rank": 6,
-      "medal": "6",
+      "rank": 7,
+      "medal": "7",
       "title": "你一年的8760小时",
       "duration": "40m",
       "hours": 0.68,
@@ -301,8 +315,8 @@
       "status": "reading"
     },
     {
-      "rank": 7,
-      "medal": "7",
+      "rank": 8,
+      "medal": "8",
       "title": "国富论",
       "duration": "35m",
       "hours": 0.6,
@@ -314,8 +328,8 @@
       "status": "reading"
     },
     {
-      "rank": 8,
-      "medal": "8",
+      "rank": 9,
+      "medal": "9",
       "title": "快速阅读",
       "duration": "33m",
       "hours": 0.55,
@@ -325,19 +339,6 @@
       "highlightDensity": 1.8,
       "readingMode": "📝 随手记",
       "status": "finished"
-    },
-    {
-      "rank": 9,
-      "medal": "9",
-      "title": "高效决策法系列：原则+对赌+富人思维+思维的发现+助推",
-      "duration": "29m",
-      "hours": 0.49,
-      "progress": 54.8,
-      "eta": "15.1h",
-      "highlights": 0,
-      "highlightDensity": 0.0,
-      "readingMode": "🌊 纯沉浸",
-      "status": "reading"
     },
     {
       "rank": 10,
@@ -354,8 +355,8 @@
     }
   ],
   "last7Days": {
-    "totalHours": 8.1,
-    "avgDailyMin": 69.1,
+    "totalHours": 9.9,
+    "avgDailyMin": 85.1,
     "chart": [
       {
         "day": "07-27",
@@ -379,25 +380,25 @@
       },
       {
         "day": "08-01",
-        "minutes": 89.5
+        "minutes": 98.3
       },
       {
         "day": "08-02",
-        "minutes": 0.0
+        "minutes": 103.8
       }
     ],
     "topBooks": [
       {
         "title": "巴菲特传",
-        "hours": 4.4
+        "hours": 5.1
       },
       {
         "title": "巴菲特传",
         "hours": 3.6
       },
       {
-        "title": "Summary of logs/ccdb on KPPMainAppV2_5409_002-juno_16020101_muscat_wario-409747_crash_Jul_29_00.23.57_2026.html",
-        "hours": 0.0
+        "title": "高效决策法系列：原则+对赌+富人思维+思维的发现+助推",
+        "hours": 1.2
       }
     ]
   }
