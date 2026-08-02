@@ -7,6 +7,7 @@ import { DashboardHeader } from './components/DashboardHeader.jsx';
 import { HeatmapCard } from './components/HeatmapCard.jsx';
 import { HourlyDistributionCard } from './components/HourlyDistributionCard.jsx';
 import { MetricsGrid } from './components/MetricsGrid.jsx';
+import { ReadingCalendar } from './components/ReadingCalendar.jsx';
 import { PeriodTabs, usePeriodTab } from './components/PeriodTabs.jsx';
 import { ErrorScreen, LoadingScreen } from './components/StatusScreen.jsx';
 import { TopBooksCard } from './components/TopBooksCard.jsx';
@@ -42,6 +43,8 @@ export default function App() {
       )}
 
       <HeatmapCard heatmapData={data.heatmap || {}} tzOffset={tzOffset} />
+
+      <ReadingCalendar entries={data.calendarEntries || []} latestDate={data.period?.end} />
 
       {/* 图表区：大屏 3 列宫格，7 天简报占 2 列作为主视觉 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

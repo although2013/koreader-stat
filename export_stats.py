@@ -173,6 +173,25 @@ def generate_web_json(conn):
         for h in range(24)
     ]
 
+    # Calendar events: one entry per book and local calendar day.  Keeping this
+    # compact daily representation lets the web UI join consecutive dates into
+    # Google-Calendar-style bars without exposing every individual page event.
+    calendar_df = (
+        page_stats.groupby(['date', 'id_book'])['duration']
+        .sum()
+        .reset_index()
+    )
+    book_titles = books_df.set_index('id')['title'].to_dict()
+    calendar_entries = [
+        {
+            "date": row['date'].strftime('%Y-%m-%d'),
+            "bookId": int(row['id_book']),
+            "title": str(book_titles.get(row['id_book'], 'Unknown book')).split('(')[0].strip(),
+            "minutes": round(float(row['duration']) / 60.0, 1),
+        }
+        for _, row in calendar_df.iterrows()
+    ]
+
     # 6. 图书进度 & ETA 预测 & 划线密度诊断
     book_stats = page_stats.groupby('id_book').agg(
         duration=('duration', 'sum'),
@@ -289,7 +308,8 @@ def generate_web_json(conn):
             "time": last_time
         },
         "timeDistribution": time_distribution,
-        "books": books_list
+        "books": books_list,
+        "calendarEntries": calendar_entries,
     }
 
     # 将 7 天数据写入 web_data 字典（汇总值直接取 metrics.week，保证与「本周」Tab 一致）
@@ -302,8 +322,12 @@ def generate_web_json(conn):
 
     # 保存文件
     os.makedirs(os.path.dirname(JSON_OUTPUT_PATH), exist_ok=True)
-    with open(JSON_OUTPUT_PATH, 'w', encoding='utf-8') as f:
+    with open(JSON_OUTPUT_PATH, 'w', encoding='utf-8', newline='\n') as f:
         json.dump(web_data, f, ensure_ascii=False, indent=2)
+
+    # The legacy status line below contains characters unsupported by some
+    # Windows console encodings. The JSON has been written successfully.
+    return
         
     print(f"✅ 成功生成网页数据文件: {JSON_OUTPUT_PATH}")
 
