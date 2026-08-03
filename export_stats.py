@@ -110,8 +110,13 @@ def get_daily_heatmap(cursor):
     heatmap_data = {row[0]: round(row[1], 1) for row in rows if row[0]}
     return heatmap_data
 
-def generate_web_json(conn):
-    """从 SQLite 提取并清洗数据，生成 Cloudflare Pages 所需的结构化 JSON"""
+def generate_web_json(conn, json_output_path=JSON_OUTPUT_PATH):
+    """从 SQLite 提取并清洗数据，生成 Cloudflare Pages 所需的结构化 JSON
+
+    json_output_path 可传入以复用本函数（例如 server/app.py 在收到设备
+    上传的数据库后，直接调用本函数生成到服务器自己的数据目录，而不是
+    仓库里 GitHub Actions 用的 public/ 目录）。
+    """
     # 🌟 1. 修复：建立游标对象，供 get_daily_heatmap 使用
     cursor = conn.cursor()
 
@@ -321,15 +326,13 @@ def generate_web_json(conn):
     }
 
     # 保存文件
-    os.makedirs(os.path.dirname(JSON_OUTPUT_PATH), exist_ok=True)
-    with open(JSON_OUTPUT_PATH, 'w', encoding='utf-8', newline='\n') as f:
+    output_dir = os.path.dirname(json_output_path)
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
+    with open(json_output_path, 'w', encoding='utf-8', newline='\n') as f:
         json.dump(web_data, f, ensure_ascii=False, indent=2)
 
-    # The legacy status line below contains characters unsupported by some
-    # Windows console encodings. The JSON has been written successfully.
-    return
-        
-    print(f"✅ 成功生成网页数据文件: {JSON_OUTPUT_PATH}")
+    return web_data
 
 def main():
     if not os.path.exists(DB_PATH):

@@ -5,6 +5,9 @@
 *.sqlite3
 *.db
 
+# 自建服务器运行时数据（statistics.sqlite3 + reading_data.json），随部署生成，不进仓库
+server/data/
+
 # Environment variables & local secrets
 .env
 .env.local

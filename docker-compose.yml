@@ -1,0 +1,16 @@
+services:
+  koreader-stat:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      # 必须设置：KOReader 插件上传时要带的 Bearer Token，自己随便生成一个长随机字符串。
+      UPLOAD_TOKEN: ${UPLOAD_TOKEN:?请设置 UPLOAD_TOKEN 环境变量}
+    volumes:
+      - koreader_stat_data:/app/data
+
+volumes:
+  koreader_stat_data:
