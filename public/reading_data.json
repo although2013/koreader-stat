@@ -1,101 +1,101 @@
 {
   "period": {
     "start": "2026-07-13",
-    "end": "2026-08-02",
-    "totalDays": 21,
+    "end": "2026-08-03",
+    "totalDays": 22,
     "updatedAt": "2026-08-03",
     "timezone": "UTC+9",
     "tzOffsetHours": 9
   },
   "overall": {
-    "totalHours": 25.9,
-    "totalMinutes": 1554,
-    "totalPages": 1263,
-    "totalSessions": 92,
+    "totalHours": 27.7,
+    "totalMinutes": 1661,
+    "totalPages": 1347,
+    "totalSessions": 97,
     "maxSessionMin": 165.3,
-    "avgSessionMin": 16.9,
+    "avgSessionMin": 17.1,
     "activeBooks": 30,
     "avgSpeedPph": 48.7,
-    "avgSecPerPage": 73.9,
-    "currentStreak": 12,
-    "maxStreak": 12,
-    "nightOwlRatio": 6.9,
-    "totalHighlights": 95
+    "avgSecPerPage": 74.0,
+    "currentStreak": 13,
+    "maxStreak": 13,
+    "nightOwlRatio": 7.4,
+    "totalHighlights": 107
   },
   "metrics": {
     "all": {
-      "label": "2026-07-13 ~ 2026-08-02",
-      "days": 21,
-      "daysWithReading": 19,
-      "totalHours": 25.9,
-      "totalMinutes": 1554,
-      "totalPages": 1263,
-      "totalSessions": 92,
-      "avgSessionMin": 16.9,
+      "label": "2026-07-13 ~ 2026-08-03",
+      "days": 22,
+      "daysWithReading": 20,
+      "totalHours": 27.7,
+      "totalMinutes": 1661,
+      "totalPages": 1347,
+      "totalSessions": 97,
+      "avgSessionMin": 17.1,
       "maxSessionMin": 165.3,
       "activeBooks": 30,
       "avgSpeedPph": 48.7,
-      "avgSecPerPage": 73.9,
-      "nightOwlRatio": 6.9,
-      "avgDailyMin": 74.0,
-      "currentStreak": 12,
-      "maxStreak": 12,
-      "totalHighlights": 95
+      "avgSecPerPage": 74.0,
+      "nightOwlRatio": 7.4,
+      "avgDailyMin": 75.5,
+      "currentStreak": 13,
+      "maxStreak": 13,
+      "totalHighlights": 107
     },
     "week": {
       "label": "07-28 ~ 08-03",
       "days": 7,
-      "daysWithReading": 6,
-      "totalHours": 8.8,
-      "totalMinutes": 529,
-      "totalPages": 378,
-      "totalSessions": 28,
-      "avgSessionMin": 18.9,
+      "daysWithReading": 7,
+      "totalHours": 10.6,
+      "totalMinutes": 635,
+      "totalPages": 462,
+      "totalSessions": 33,
+      "avgSessionMin": 19.3,
       "maxSessionMin": 68.6,
       "activeBooks": 4,
-      "avgSpeedPph": 42.8,
-      "avgSecPerPage": 84.1,
-      "nightOwlRatio": 11.5,
-      "avgDailyMin": 75.7,
-      "currentStreak": 12,
-      "maxStreak": 12,
+      "avgSpeedPph": 43.6,
+      "avgSecPerPage": 82.6,
+      "nightOwlRatio": 11.9,
+      "avgDailyMin": 90.8,
+      "currentStreak": 13,
+      "maxStreak": 13,
       "start": "2026-07-28",
       "end": "2026-08-03"
     },
     "today": {
-      "label": "08-02",
+      "label": "08-03",
       "days": 1,
       "daysWithReading": 1,
       "totalHours": 1.7,
-      "totalMinutes": 103,
-      "totalPages": 83,
-      "totalSessions": 5,
-      "avgSessionMin": 20.8,
-      "maxSessionMin": 53.2,
-      "activeBooks": 2,
+      "totalMinutes": 104,
+      "totalPages": 84,
+      "totalSessions": 4,
+      "avgSessionMin": 26.2,
+      "maxSessionMin": 42.8,
+      "activeBooks": 1,
       "avgSpeedPph": 48.0,
-      "avgSecPerPage": 75.0,
-      "nightOwlRatio": 17.7,
-      "avgDailyMin": 103.8,
-      "currentStreak": 12,
-      "maxStreak": 12,
-      "date": "2026-08-02",
+      "avgSecPerPage": 74.9,
+      "nightOwlRatio": 14.3,
+      "avgDailyMin": 104.9,
+      "currentStreak": 13,
+      "maxStreak": 13,
+      "date": "2026-08-03",
       "previousDay": {
-        "label": "08-01",
+        "label": "08-02",
         "days": 1,
         "daysWithReading": 1,
-        "totalHours": 1.6,
-        "totalMinutes": 98,
-        "totalPages": 60,
-        "totalSessions": 4,
-        "avgSessionMin": 24.6,
-        "maxSessionMin": 68.6,
-        "activeBooks": 1,
-        "avgSpeedPph": 36.6,
-        "avgSecPerPage": 98.3,
-        "nightOwlRatio": 0.0,
-        "avgDailyMin": 98.3,
-        "date": "2026-08-01"
+        "totalHours": 1.7,
+        "totalMinutes": 104,
+        "totalPages": 84,
+        "totalSessions": 6,
+        "avgSessionMin": 17.5,
+        "maxSessionMin": 53.2,
+        "activeBooks": 2,
+        "avgSpeedPph": 48.0,
+        "avgSecPerPage": 75.0,
+        "nightOwlRatio": 17.5,
+        "avgDailyMin": 105.0,
+        "date": "2026-08-02"
       }
     }
   },
@@ -118,11 +118,12 @@
     "2026-07-30": 79.0,
     "2026-07-31": 97.5,
     "2026-08-01": 98.3,
-    "2026-08-02": 103.8
+    "2026-08-02": 105.0,
+    "2026-08-03": 104.9
   },
   "recent": {
     "title": "巴菲特传",
-    "time": "2026-08-02 22:21"
+    "time": "2026-08-03 22:31"
   },
   "timeDistribution": [
     {
@@ -131,7 +132,7 @@
     },
     {
       "hour": "01:00",
-      "hours": 0.64
+      "hours": 0.89
     },
     {
       "hour": "02:00",
@@ -159,11 +160,11 @@
     },
     {
       "hour": "08:00",
-      "hours": 1.6
+      "hours": 1.84
     },
     {
       "hour": "09:00",
-      "hours": 1.51
+      "hours": 1.98
     },
     {
       "hour": "10:00",
@@ -203,7 +204,7 @@
     },
     {
       "hour": "19:00",
-      "hours": 4.03
+      "hours": 4.31
     },
     {
       "hour": "20:00",
@@ -215,17 +216,30 @@
     },
     {
       "hour": "22:00",
-      "hours": 3.12
+      "hours": 3.63
     },
     {
       "hour": "23:00",
-      "hours": 0.63
+      "hours": 0.65
     }
   ],
   "books": [
     {
       "rank": 1,
       "medal": "🥇",
+      "title": "巴菲特传",
+      "duration": "6.9h",
+      "hours": 6.89,
+      "progress": 59.7,
+      "eta": "5.3h",
+      "highlights": 45,
+      "highlightDensity": 6.5,
+      "readingMode": "💡 干货研读",
+      "status": "reading"
+    },
+    {
+      "rank": 2,
+      "medal": "🥈",
       "title": "滚雪球：巴菲特和他的财富人生",
       "duration": "6.7h",
       "hours": 6.74,
@@ -234,19 +248,6 @@
       "highlights": 15,
       "highlightDensity": 2.2,
       "readingMode": "📝 随手记",
-      "status": "reading"
-    },
-    {
-      "rank": 2,
-      "medal": "🥈",
-      "title": "巴菲特传",
-      "duration": "5.1h",
-      "hours": 5.12,
-      "progress": 48.4,
-      "eta": "6.7h",
-      "highlights": 33,
-      "highlightDensity": 6.4,
-      "readingMode": "💡 干货研读",
       "status": "reading"
     },
     {
@@ -629,12 +630,18 @@
       "date": "2026-08-02",
       "bookId": 31,
       "title": "巴菲特传",
-      "minutes": 32.1
+      "minutes": 33.4
+    },
+    {
+      "date": "2026-08-03",
+      "bookId": 31,
+      "title": "巴菲特传",
+      "minutes": 104.9
     }
   ],
   "last7Days": {
-    "totalHours": 8.8,
-    "avgDailyMin": 75.7,
+    "totalHours": 10.6,
+    "avgDailyMin": 90.8,
     "chart": [
       {
         "day": "07-28",
@@ -658,17 +665,17 @@
       },
       {
         "day": "08-02",
-        "minutes": 103.8
+        "minutes": 105.0
       },
       {
         "day": "08-03",
-        "minutes": 0.0
+        "minutes": 104.9
       }
     ],
     "topBooks": [
       {
         "title": "巴菲特传",
-        "hours": 5.1
+        "hours": 6.9
       },
       {
         "title": "巴菲特传",
