@@ -12,7 +12,7 @@ local logger = require("logger")
 local T = require("ffi/util").template
 local _ = require("gettext")
 
-local Settings = require("settings")
+local Settings = require("readingstat_settings")
 
 local ReadingStat = WidgetContainer:extend{
     name = "readingstat",
@@ -27,6 +27,7 @@ end
 function ReadingStat:addToMainMenu(menu_items)
     menu_items.readingstat = {
         text = _("Reading stat uploader"),
+        sorting_hint = "more_tools",
         sub_item_table = {
             {
                 text = _("Upload now"),

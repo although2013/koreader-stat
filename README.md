@@ -24,11 +24,11 @@ docker compose up -d --build
 
 把 [koreader-plugin/readingstat.koplugin](koreader-plugin/readingstat.koplugin) 整个文件夹拷贝到设备的 `koreader/plugins/` 目录下，重启 KOReader。
 
-在 KOReader 里：菜单 → **Reading stat uploader** → **Server settings**，填入服务器地址（如 `https://your-domain.com`）和上面设置的 `UPLOAD_TOKEN`。之后点 **Upload now** 即可手动同步一次。
+在 KOReader 里：菜单 → **更多工具 (More tools)** → **Reading stat uploader** → **Server settings**，填入服务器地址（如 `https://your-domain.com`）和上面设置的 `UPLOAD_TOKEN`。之后点 **Upload now** 即可手动同步一次。
 
 菜单里还有一个可勾选项 **Upload when closing a book (only if Wi-Fi is already connected)**：勾上之后，每次关闭一本书时，如果设备**当前已经连着 Wi-Fi**（不会主动帮你打开 Wi-Fi、也不等待联网），就会静默上传一次；没联网、没配置服务器地址/Token 时会自动跳过，不会弹窗打扰。上传失败仍会弹提示。
 
-> 插件未在真机上实际测试过，如果菜单不显示、上传报错，或者关书时卡顿明显，先看 KOReader 的日志（设置 → 更多工具 → 显示日志）里 `[ReadingStat]` 开头的记录；关书时的上传是同步阻塞的，如果服务器很慢会导致关书界面短暂卡顿。
+> 如果上传报错，或者关书时卡顿明显，看 KOReader 日志（`crash.log`）里 `[ReadingStat]` 开头的记录；关书时的上传是同步阻塞的，服务器很慢会导致关书界面短暂卡顿。
 
 ## 📝 个人简介 / 其他说明
 这里可以写你自己的其他 Markdown 内容，不会被自动化脚本覆盖...
