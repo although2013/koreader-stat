@@ -3,7 +3,7 @@
     "start": "2026-07-13",
     "end": "2026-08-03",
     "totalDays": 22,
-    "updatedAt": "2026-08-03",
+    "updatedAt": "2026-08-04",
     "timezone": "UTC+9",
     "tzOffsetHours": 9
   },
@@ -43,24 +43,24 @@
       "totalHighlights": 107
     },
     "week": {
-      "label": "07-28 ~ 08-03",
+      "label": "07-29 ~ 08-04",
       "days": 7,
-      "daysWithReading": 7,
-      "totalHours": 10.6,
-      "totalMinutes": 635,
-      "totalPages": 462,
-      "totalSessions": 33,
-      "avgSessionMin": 19.3,
+      "daysWithReading": 6,
+      "totalHours": 9.5,
+      "totalMinutes": 567,
+      "totalPages": 422,
+      "totalSessions": 29,
+      "avgSessionMin": 19.6,
       "maxSessionMin": 68.6,
       "activeBooks": 4,
-      "avgSpeedPph": 43.6,
-      "avgSecPerPage": 82.6,
-      "nightOwlRatio": 11.9,
-      "avgDailyMin": 90.8,
+      "avgSpeedPph": 44.6,
+      "avgSecPerPage": 80.7,
+      "nightOwlRatio": 13.4,
+      "avgDailyMin": 81.1,
       "currentStreak": 13,
       "maxStreak": 13,
-      "start": "2026-07-28",
-      "end": "2026-08-03"
+      "start": "2026-07-29",
+      "end": "2026-08-04"
     },
     "today": {
       "label": "08-03",
@@ -640,13 +640,9 @@
     }
   ],
   "last7Days": {
-    "totalHours": 10.6,
-    "avgDailyMin": 90.8,
+    "totalHours": 9.5,
+    "avgDailyMin": 81.1,
     "chart": [
-      {
-        "day": "07-28",
-        "minutes": 68.5
-      },
       {
         "day": "07-29",
         "minutes": 82.7
@@ -670,6 +666,10 @@
       {
         "day": "08-03",
         "minutes": 104.9
+      },
+      {
+        "day": "08-04",
+        "minutes": 0.0
       }
     ],
     "topBooks": [
@@ -679,7 +679,7 @@
       },
       {
         "title": "巴菲特传",
-        "hours": 2.5
+        "hours": 1.4
       },
       {
         "title": "高效决策法系列：原则+对赌+富人思维+思维的发现+助推",
